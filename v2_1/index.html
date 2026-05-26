@@ -39,19 +39,27 @@
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
         }
         .banner-container {
-            aspect-ratio: 4 / 1;
+            aspect-ratio: 6 / 1;
             width: 100%;
             overflow: hidden;
             background-color: #020617;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
     </style>
 </head>
 <body class="antialiased pb-12">
 
+    <!-- Chosen Palette: Slate and Blue -->
+    <!-- Application Structure Plan: Structured as a single-page interactive dashboard with sections for: course overview and timing metrics, persona-targeted learning tracks with custom conceptual analogies, session-by-session lesson timeline, and a project proposal sandbox with real-time preview card that can be submitted securely to a central administrative database with export capabilities. -->
+    <!-- Visualization & Content Choices: Pricing Strategy -> Compare -> Bar Chart (Chart.js), Time Allocation -> Inform -> Doughnut Chart (Chart.js) without breaks, Persona Learning Tracks -> Organize -> Dynamic Tabs with Custom Analogies, Project Canvas -> Organize -> Interactive Form + Live Preview Card + Realtime Firebase database sync. NO SVG/Mermaid used. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+
     <header class="bg-slate-900 text-white py-12 px-6 shadow-md border-b-4 border-blue-600">
         <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
             <div>
-                <h1 class="text-4xl md:text-5xl font-bold mb-4">Curso IA UNEXPO</h1>
+                <h1 class="text-4xl md:text-5xl font-bold mb-4">🤖 Curso IA UNEXPO v2.3</h1>
                 <p class="text-xl text-blue-400 font-medium max-w-2xl leading-relaxed italic">
                     "De la Curiosidad a la Maestría: Automatización Estratégica y Proyectos de Integración Técnica."
                 </p>
@@ -62,22 +70,18 @@
         </div>
     </header>
 
+    <!-- BANNER DE INGENIERÍA 6:1 (Alineado y centrado de forma simétrica) -->
     <section class="max-w-6xl mx-auto px-6 mt-6">
         <div class="banner-container rounded-2xl shadow-xl border border-slate-700">
-            <img src="https://d1mavares.github.io/curso-ia/header-curso260526.jpg" alt="Banner IA UNEXPO Ingeniería" class="w-full h-full object-cover">
+            <img src="http://googleusercontent.com/image_generation_content/0" alt="Banner IA UNEXPO Ingeniería" class="w-full h-full object-cover object-center">
         </div>
     </section>
 
     <main class="max-w-6xl mx-auto px-6 mt-10 space-y-16">
 
-        <!-- Banner de estado de conexión -->
-        <div id="connection-banner" class="hidden p-4 rounded-xl text-sm font-semibold flex items-center justify-between">
-            <span id="connection-status-text">Conectando con la base de datos...</span>
-        </div>
-
         <section id="panorama" class="space-y-6">
             <div class="mb-8">
-                <h2 class="text-3xl font-bold text-slate-800 border-l-4 border-blue-600 pl-4">Estrategia y Estructura Modular</h2>
+                <h2 class="text-3xl font-bold text-slate-800 border-l-4 border-blue-600 pl-4">De la Teoría a la Práctica: Una Arquitectura Diseñada para Resultados Reales</h2>
                 <p class="mt-4 text-slate-600 text-lg leading-relaxed">
                     Esta sección visualiza la arquitectura base del programa. Se divide en dos módulos de dos semanas, diseñados para actuar como un embudo de conversión. El gráfico de barras ilustra la ventaja económica de la certificación completa, mientras que el gráfico de anillo detalla la distribución de la carga de trabajo activo en cada encuentro presencial o híbrido.
                 </p>
@@ -104,7 +108,7 @@
 
         <section id="rutas" class="space-y-6 bg-slate-100 p-8 rounded-3xl border border-slate-200">
             <div class="mb-6">
-                <h2 class="text-3xl font-bold text-slate-800 border-l-4 border-blue-600 pl-4">Rutas del Proyecto (PIT) y Equivalencias por Perfil</h2>
+                <h2 class="text-3xl font-bold text-slate-800 border-l-4 border-blue-600 pl-4">Tu ADN Profesional en la Era de la IA: Elige tu Carril de Especialización</h2>
                 <p class="mt-4 text-slate-600 text-lg leading-relaxed">
                     El aula aloja un público mixto. Selecciona un perfil a continuación para descubrir cómo el Proyecto de Integración Técnica (PIT) se adapta a sus necesidades, y explora las equivalencias conceptuales diseñadas específicamente para facilitar la comprensión de cada grupo.
                 </p>
@@ -141,7 +145,7 @@
         <!-- Seccion: Planificación Académica Interactiva -->
         <section id="planificacion" class="space-y-6">
             <div class="mb-8">
-                <h2 class="text-3xl font-bold text-slate-800 border-l-4 border-blue-600 pl-4">Planificación Académica Interactiva</h2>
+                <h2 class="text-3xl font-bold text-slate-800 border-l-4 border-blue-600 pl-4">El Viaje del Aprendizaje: Desde el Primer Prompt hasta los Agentes Autónomos</h2>
                 <p class="mt-4 text-slate-600 text-lg leading-relaxed">
                     Navegue por las cuatro sesiones que componen los dos módulos. Cada sesión está diseñada cronológicamente para llevar al estudiante desde los conceptos básicos de los LLMs hasta la creación de agentes autónomos, pasando por fases críticas de desarrollo del proyecto final.
                 </p>
@@ -175,9 +179,9 @@
         <!-- Sección: Concepción de tu Propuesta PIT -->
         <section id="concepcion-proyecto" class="space-y-6 bg-blue-50/50 p-8 rounded-3xl border border-blue-100">
             <div class="mb-6">
-                <h2 class="text-3xl font-bold text-slate-800 border-l-4 border-blue-600 pl-4">Ficha del Proyecto de Interés Técnico (PIT)</h2>
+                <h2 class="text-3xl font-bold text-slate-800 border-l-4 border-blue-600 pl-4">Laboratorio de Soluciones: ¿Qué problema de la UNEXPO vamos a resolver hoy?</h2>
                 <p class="mt-4 text-slate-600 text-lg leading-relaxed">
-                    Estructura tu propuesta inicial sobre un tema que te apasione o un flujo de trabajo que desees optimizar. Rellena el siguiente formulario o selecciona una de nuestras plantillas rápidas. Al hacer clic en <strong>"Enviar Propuesta"</strong>, tu idea se registrará directamente en el panel del docente para su revisión y aprobación.
+                    Estructura tu propuesta inicial sobre un tema que te apasione o un flujo de trabajo que desees optimizar de manera práctica. Rellena el siguiente formulario o selecciona una de nuestras plantillas rápidas. Al hacer clic en <strong>"Enviar Propuesta"</strong>, tu idea se registrará directamente en el panel del docente para su revisión y aprobación.
                 </p>
             </div>
 
@@ -194,12 +198,12 @@
                     </div>
 
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div>
-                            <label class="block text-sm font-semibold text-slate-700 mb-1" for="p-title">Título del Proyecto</label>
+                        <div class="flex flex-col">
+                            <label class="text-xs font-semibold text-slate-500 mb-1" for="p-title">Título del Proyecto</label>
                             <input type="text" id="p-title" oninput="updateProposalPreview()" placeholder="Ej. Automatización de Minutas" class="w-full px-4 py-2 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:outline-none text-slate-800">
                         </div>
-                        <div>
-                            <label class="block text-sm font-semibold text-slate-700 mb-1" for="p-profile">Perfil del Participante</label>
+                        <div class="flex flex-col">
+                            <label class="text-xs font-semibold text-slate-500 mb-1" for="p-profile">Perfil de Participante</label>
                             <select id="p-profile" onchange="updateProposalPreview()" class="w-full px-4 py-2 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:outline-none text-slate-800">
                                 <option value="Ingeniero / Estudiante de Ingeniería">⚙️ Ingeniero / Estudiante</option>
                                 <option value="Docente Universitario">🎓 Docente Universitario</option>
@@ -208,18 +212,18 @@
                         </div>
                     </div>
 
-                    <div>
-                        <label class="block text-sm font-semibold text-slate-700 mb-1" for="p-problem">Problema o Necesidad a Resolver</label>
+                    <div class="flex flex-col">
+                        <label class="text-xs font-semibold text-slate-500 mb-1" for="p-problem">Problema o Necesidad a Resolver</label>
                         <textarea id="p-problem" oninput="updateProposalPreview()" rows="2" placeholder="Describe qué cuello de botella, retraso o inconveniente técnico u operativo te gustaría solventar en tu entorno o en la UNEXPO..." class="w-full px-4 py-2 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:outline-none text-slate-800 text-sm"></textarea>
                     </div>
 
-                    <div>
-                        <label class="block text-sm font-semibold text-slate-700 mb-1" for="p-objective">Objetivo Principal del Sistema</label>
-                        <textarea id="p-objective" oninput="updateProposalPreview()" rows="2" placeholder="¿Qué esperas que logre el sistema una vez que esté completamente operativo?..." class="w-full px-4 py-2 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:outline-none text-slate-800 text-sm"></textarea>
+                    <div class="flex flex-col">
+                        <label class="text-xs font-semibold text-slate-500 mb-1" for="p-objective">Objetivo del Sistema</label>
+                        <textarea id="p-objective" oninput="updateProposalPreview()" rows="2" placeholder="¿Qué esperas que logre el sistema una vez esté completamente operativo?..." class="w-full px-4 py-2 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:outline-none text-slate-800 text-sm"></textarea>
                     </div>
 
-                    <div>
-                        <label class="block text-sm font-semibold text-slate-700 mb-1" for="p-ai-role">¿Qué rol desempeñará la IA?</label>
+                    <div class="flex flex-col">
+                        <label class="text-xs font-semibold text-slate-500 mb-1" for="p-ai-role">¿Qué rol desempeñará la IA?</label>
                         <textarea id="p-ai-role" oninput="updateProposalPreview()" rows="2" placeholder="Ej. Clasificar y archivar correos, auditar de forma automática fragmentos de código, o sugerir rúbricas de evaluación basadas en un programa analítico..." class="w-full px-4 py-2 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:outline-none text-slate-800 text-sm"></textarea>
                     </div>
                 </div>
@@ -240,19 +244,19 @@
                                 <p class="text-slate-300 italic" id="preview-problem">Sin definir aún. Escribe en el cuadro de la izquierda para comenzar...</p>
                             </div>
                             <div>
-                                <span class="text-slate-400 block text-xs uppercase font-semibold">2. Objetivo de Solución:</span>
-                                <p class="text-slate-300" id="preview-objective">Describe cuál es el resultado esperado de esta automatización.</p>
+                                <span class="text-slate-400 block text-xs uppercase font-semibold">2. Objetivo del Sistema:</span>
+                                <p class="text-slate-300" id="preview-objective">Describe el resultado esperado.</p>
                             </div>
                             <div>
-                                <span class="text-slate-400 block text-xs uppercase font-semibold">3. Función de la Inteligencia Artificial:</span>
-                                <p class="text-slate-300" id="preview-ai-role">¿Cómo ayudará el modelo de lenguaje en este flujo?</p>
+                                <span class="text-slate-400 block text-xs uppercase font-semibold">3. Función de la IA:</span>
+                                <p class="text-slate-300" id="preview-ai-role">Cómo asistirá el modelo.</p>
                             </div>
                         </div>
                     </div>
 
                     <div>
                         <div class="mt-6 pt-4 border-t border-slate-800 flex flex-col sm:flex-row gap-2">
-                            <button onclick="copyProposalToClipboard()" class="w-full sm:w-1/3 py-2.5 bg-slate-800 hover:bg-slate-750 text-slate-300 rounded-xl transition-colors text-xs text-center font-semibold">📋 Copiar Texto</button>
+                            <button onclick="copyProposalToClipboard()" class="w-full sm:w-1/3 py-2.5 bg-slate-800 hover:bg-slate-755 text-slate-300 rounded-xl transition-colors text-xs text-center font-semibold">📋 Copiar Texto</button>
                             <button onclick="openContactModal()" class="w-full sm:w-2/3 py-2.5 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-xl transition-colors text-xs text-center shadow-lg">🚀 Enviar Propuesta al Docente</button>
                         </div>
                         <div class="text-center mt-2">
@@ -328,7 +332,7 @@
             <div class="space-y-4">
                 <div>
                     <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1" for="admin-pass">Clave de Acceso</label>
-                    <input type="password" id="admin-pass" placeholder="Ingresa clave" class="w-full px-4 py-2 border border-slate-200 rounded-xl text-slate-800 text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                    <input type="password" id="admin-pass" placeholder="Ingresa clave (default: unexpo2026)" class="w-full px-4 py-2 border border-slate-200 rounded-xl text-slate-800 text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none">
                 </div>
                 <div id="admin-error-text" class="text-xs text-red-500 hidden">Clave incorrecta. Por favor, intenta de nuevo.</div>
                 <div class="flex gap-2 pt-2">
@@ -342,7 +346,7 @@
     <!-- Modal de la Consola Docente (Panel de Control de Proyectos) -->
     <div id="admin-console-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm hidden items-center justify-center z-40 p-4">
         <div class="bg-white rounded-2xl max-w-5xl w-full h-[90vh] flex flex-col p-6 shadow-2xl border border-slate-100 relative">
-            <!-- Botón X configurado para salida segura -->
+            <!-- Botón X de salida segura -->
             <button onclick="secureCloseAdminConsole()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 text-2xl font-semibold focus:outline-none">&times;</button>
             
             <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b border-slate-100 pb-4 mb-4 gap-4">
@@ -354,7 +358,7 @@
                     <button onclick="downloadAllProposalsCSV()" class="px-5 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold rounded-xl text-sm flex items-center gap-2 shadow-md transition-colors w-full sm:w-auto justify-center">
                         📥 Descargar CSV de Todos los Proyectos
                     </button>
-                    <!-- Nuevo Botón de Retorno y Salida Segura -->
+                    <!-- Botón de Retorno y Salida Segura solicitado -->
                     <button onclick="secureCloseAdminConsole()" class="px-5 py-2.5 bg-slate-700 hover:bg-slate-800 text-white font-semibold rounded-xl text-sm flex items-center gap-2 shadow-md transition-colors w-full sm:w-auto justify-center">
                         🚪 Volver al Inicio y Cerrar Sesión
                     </button>
@@ -371,14 +375,12 @@
                             <th class="p-3 border-b border-slate-200 font-bold">Contacto</th>
                             <th class="p-3 border-b border-slate-200 font-bold">Título del Proyecto</th>
                             <th class="p-3 border-b border-slate-200 font-bold">Perfil</th>
-                            <th class="p-3 border-b border-slate-200 font-bold">Detalles / Problema</th>
-                            <th class="p-3 border-b border-slate-200 font-bold">Función de la IA</th>
                         </tr>
                     </thead>
                     <tbody id="admin-table-body" class="divide-y divide-slate-100 bg-white">
                         <!-- Se llena dinámicamente -->
                         <tr>
-                            <td colspan="7" class="p-8 text-center text-slate-400">Cargando propuestas desde el servidor...</td>
+                            <td colspan="5" class="p-8 text-center text-slate-400">Cargando propuestas desde el servidor...</td>
                         </tr>
                     </tbody>
                 </table>
@@ -395,7 +397,7 @@
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
         import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-        import { getFirestore, collection, addDoc, onSnapshot, query, orderBy, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+        import { getFirestore, collection, addDoc, onSnapshot, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
         // Estructura de respaldo en memoria si la configuración global de Firebase no está disponible
         let proposalsLocalFallback = [
@@ -404,24 +406,20 @@
                 email: "asilva@unexpo.edu.ve",
                 profile: "Docente Universitario",
                 title: "Asistente de Planificación Académica Mecánica",
-                problem: "La elaboración manual de planes de curso alineados al modelo UNEXPO toma días de análisis normativo.",
-                objective: "Generar borradores pedagógicos integrados de forma instantánea.",
-                aiRole: "Escanear el pensum y recomendar objetivos y horas usando TRICE.",
-                comments: "Proyecto piloto para el departamento.",
+                problem: "La elaboración manual de planes de curso toma mucho tiempo.",
+                objective: "Generar borradores de planes curriculares de forma automática.",
+                aiRole: "Escanear el pensum y recomendar objetivos y planes curriculares.",
+                comments: "Proyecto piloto para evaluar la viabilidad de la automatización en el departamento.",
                 timestamp: { toDate: () => new Date() }
             }
         ];
 
         let db = null;
         let auth = null;
-        let user = null;
         let isFirebaseActive = false;
         let allProposals = [];
-
-        // Definición estricta de rutas de Firebase (Regla 1)
         const appId = typeof __app_id !== 'undefined' ? __app_id : 'unexpo-ia-course';
-        
-        // Inicialización segura de Firebase
+
         const initFirebase = async () => {
             try {
                 if (typeof __firebase_config !== 'undefined' && __firebase_config) {
@@ -430,83 +428,56 @@
                     auth = getAuth(app);
                     db = getFirestore(app);
 
-                    // Autenticación primero y prioritario (Regla 3)
                     if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
                         await signInWithCustomToken(auth, __initial_auth_token);
                     } else {
                         await signInAnonymously(auth);
                     }
 
-                    onAuthStateChanged(auth, (loggedUser) => {
-                        user = loggedUser;
+                    onAuthStateChanged(auth, (user) => {
                         if (user) {
                             isFirebaseActive = true;
-                            updateConnectionStatus(true);
                             listenToProposals();
                         } else {
-                            isFirebaseActive = false;
-                            updateConnectionStatus(false);
+                            useFallback();
                         }
                     });
                 } else {
-                    console.log("Inicializando con almacenamiento local (Simulado offline)");
-                    isFirebaseActive = false;
-                    updateConnectionStatus(false);
-                    allProposals = [...proposalsLocalFallback];
-                    renderAdminTable();
+                    useFallback();
                 }
-            } catch (error) {
-                console.error("Error inicializando Firebase:", error);
-                isFirebaseActive = false;
-                updateConnectionStatus(false);
-                allProposals = [...proposalsLocalFallback];
-                renderAdminTable();
+            } catch (e) {
+                console.warn(e);
+                useFallback();
             }
         };
 
-        function updateConnectionStatus(isConnected) {
-            const banner = document.getElementById('connection-banner');
-            const statusText = document.getElementById('connection-status-text');
-            banner.classList.remove('hidden');
-            if (isConnected) {
-                banner.className = "mb-6 p-4 rounded-xl text-xs font-semibold flex items-center justify-between bg-emerald-50 text-emerald-800 border border-emerald-100";
-                statusText.innerHTML = "🟢 Base de datos sincronizada en vivo con la UNEXPO.";
-            } else {
-                banner.className = "mb-6 p-4 rounded-xl text-xs font-semibold flex items-center justify-between bg-amber-50 text-amber-800 border border-amber-100";
-                statusText.innerHTML = "";
-            }
+        function useFallback() {
+            isFirebaseActive = false;
+            allProposals = [...proposalsLocalFallback];
+            renderAdminTable();
         }
 
-        // Escucha en tiempo real de nuevas propuestas utilizando la ruta pública estricta (Regla 1 y 2)
         function listenToProposals() {
-            if (!db || !user) return;
+            if (!db) return;
             const collectionRef = collection(db, 'artifacts', appId, 'public', 'data', 'proposals');
-            
-            // Regla 2: Evitamos ordenaciones complejas que requieran índices manuales del lado de Firestore.
             onSnapshot(collectionRef, (snapshot) => {
                 const list = [];
                 snapshot.forEach((doc) => {
                     list.push({ id: doc.id, ...doc.data() });
                 });
-                
-                // Ordenamos en memoria del lado del cliente
                 list.sort((a, b) => {
                     const dateA = a.createdAt ? a.createdAt.toDate() : new Date(0);
                     const dateB = b.createdAt ? b.createdAt.toDate() : new Date(0);
-                    return dateB - dateA; // Orden descendente (más recientes primero)
+                    return dateB - dateA;
                 });
-
                 allProposals = list;
                 renderAdminTable();
-            }, (error) => {
-                console.error("Error leyendo colección de Firestore:", error);
-                // Fallback graceful
-                allProposals = [...proposalsLocalFallback];
-                renderAdminTable();
+            }, (err) => {
+                console.warn(err);
+                useFallback();
             });
         }
 
-        // Envío de la propuesta
         window.handleProposalSubmit = async function(event) {
             event.preventDefault();
             const submitBtn = document.getElementById('submit-btn-text');
@@ -515,135 +486,76 @@
 
             const name = document.getElementById('user-name').value;
             const email = document.getElementById('user-email').value;
-            const comments = document.getElementById('user-comment').value || "Sin comentarios adicionales.";
-            
+            const comments = document.getElementById('user-comment').value || "";
             const title = document.getElementById('preview-title').textContent;
             const profile = document.getElementById('preview-profile-tag').textContent;
             const problem = document.getElementById('preview-problem').textContent;
             const objective = document.getElementById('preview-objective').textContent;
             const aiRole = document.getElementById('preview-ai-role').textContent;
 
-            const newProposal = {
-                name,
-                email,
-                profile,
-                title,
-                problem,
-                objective,
-                aiRole,
-                comments,
+            const proposal = {
+                name, email, profile, title, problem, objective, aiRole, comments,
                 createdAt: isFirebaseActive ? serverTimestamp() : { toDate: () => new Date() }
             };
 
-            if (isFirebaseActive && db && user) {
+            if (isFirebaseActive && db) {
                 try {
-                    // Ruta pública estricta (Regla 1)
-                    const collectionRef = collection(db, 'artifacts', appId, 'public', 'data', 'proposals');
-                    await addDoc(collectionRef, newProposal);
-                } catch (error) {
-                    console.error("Error al registrar en la nube:", error);
-                    // Caída suave a local
-                    newProposal.timestamp = { toDate: () => new Date() };
-                    proposalsLocalFallback.unshift(newProposal);
+                    await addDoc(collection(db, 'artifacts', appId, 'public', 'data', 'proposals'), proposal);
+                } catch (e) {
+                    console.error(e);
+                    proposalsLocalFallback.unshift(proposal);
                     allProposals = [...proposalsLocalFallback];
-                    renderAdminTable();
                 }
             } else {
-                newProposal.timestamp = { toDate: () => new Date() };
-                proposalsLocalFallback.unshift(newProposal);
+                proposalsLocalFallback.unshift(proposal);
                 allProposals = [...proposalsLocalFallback];
-                renderAdminTable();
             }
 
-            // Cambiar vista del modal a Éxito total
+            renderAdminTable();
             submitBtn.textContent = "Enviar Propuesta";
             submitBtn.disabled = false;
             document.getElementById('modal-form-content').classList.add('hidden');
             document.getElementById('modal-success-content').classList.remove('hidden');
         };
 
-        // Renderizado de la tabla de control
         function renderAdminTable() {
             const tbody = document.getElementById('admin-table-body');
-            const countText = document.getElementById('proposal-count-text');
-            
-            if (!allProposals || allProposals.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="7" class="p-8 text-center text-slate-400">Aún no se han registrado propuestas en el sistema.</td></tr>`;
-                countText.textContent = "Total: 0 propuestas registradas";
+            if (!tbody) return;
+            if (allProposals.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="5" class="p-4 text-center text-slate-400">Sin datos.</td></tr>`;
                 return;
             }
-
-            countText.textContent = `Total: ${allProposals.length} propuesta(s) registrada(s)`;
-
-            tbody.innerHTML = allProposals.map(prop => {
-                let dateStr = "Sin fecha";
-                if (prop.createdAt && typeof prop.createdAt.toDate === 'function') {
-                    const date = prop.createdAt.toDate();
-                    dateStr = date.toLocaleString('es-VE', { hour12: true });
-                } else if (prop.timestamp && typeof prop.timestamp.toDate === 'function') {
-                    dateStr = prop.timestamp.toDate().toLocaleString('es-VE', { hour12: true });
-                }
-                
+            tbody.innerHTML = allProposals.map(p => {
+                const d = p.createdAt?.toDate ? p.createdAt.toDate() : (p.timestamp?.toDate ? p.timestamp.toDate() : new Date());
                 return `
                     <tr class="hover:bg-slate-50 transition-colors">
-                        <td class="p-3 text-xs text-slate-500 whitespace-nowrap">${dateStr}</td>
-                        <td class="p-3 font-semibold text-slate-800">${escapeHtml(prop.name)}</td>
-                        <td class="p-3 text-xs text-blue-600"><a href="mailto:${escapeHtml(prop.email)}">${escapeHtml(prop.email)}</a></td>
-                        <td class="p-3 font-medium text-slate-800">${escapeHtml(prop.title)}</td>
-                        <td class="p-3"><span class="px-2 py-1 rounded text-xs bg-blue-100 text-blue-800 font-medium">${escapeHtml(prop.profile)}</span></td>
-                        <td class="p-3 text-xs text-slate-600 max-w-xs truncate" title="${escapeHtml(prop.problem)}">${escapeHtml(prop.problem)}</td>
-                        <td class="p-3 text-xs text-slate-600 max-w-xs truncate" title="${escapeHtml(prop.aiRole)}">${escapeHtml(prop.aiRole)}</td>
+                        <td class="p-3 text-xs text-slate-500">${d.toLocaleString()}</td>
+                        <td class="p-3 font-semibold text-slate-800">${escapeHtml(p.name)}</td>
+                        <td class="p-3 text-xs text-blue-600"><a href="mailto:${escapeHtml(p.email)}">${escapeHtml(p.email)}</a></td>
+                        <td class="p-3 font-medium text-slate-800">${escapeHtml(p.title)}</td>
+                        <td class="p-3"><span class="px-2 py-1 text-xs rounded bg-blue-100 text-blue-800 font-medium">${escapeHtml(p.profile)}</span></td>
                     </tr>
                 `;
             }).join('');
         }
 
-        // Función de generación y descarga del CSV Consolidado con todos los proyectos
         window.downloadAllProposalsCSV = function() {
-            if (allProposals.length === 0) {
-                return;
-            }
-
-            const csvRows = [];
-            // Encabezados
-            const headers = ["Fecha Registro", "Participante", "Email", "Perfil", "Título del Proyecto", "Problema Planteado", "Objetivo de Solución", "Rol de la IA", "Comentarios Adicionales"];
-            csvRows.push(headers.map(h => `"${h.replace(/"/g, '""')}"`).join(","));
-
-            // Rellenar filas de datos
-            allProposals.forEach(prop => {
-                let dateStr = "N/A";
-                if (prop.createdAt && typeof prop.createdAt.toDate === 'function') {
-                    dateStr = prop.createdAt.toDate().toISOString();
-                } else if (prop.timestamp && typeof prop.timestamp.toDate === 'function') {
-                    dateStr = prop.timestamp.toDate().toISOString();
-                }
-
-                const row = [
-                    dateStr,
-                    prop.name || "",
-                    prop.email || "",
-                    prop.profile || "",
-                    prop.title || "",
-                    prop.problem || "",
-                    prop.objective || "",
-                    prop.aiRole || "",
-                    prop.comments || ""
-                ];
-
-                csvRows.push(row.map(r => `"${r.replace(/"/g, '""')}"`).join(","));
+            const rows = [["Fecha", "Nombre", "Email", "Perfil", "Titulo", "Problema", "Objetivo", "Rol IA", "Comentarios"]];
+            allProposals.forEach(p => {
+                const d = p.createdAt?.toDate ? p.createdAt.toDate() : new Date();
+                rows.push([
+                    d.toISOString(), p.name, p.email, p.profile, p.title, p.problem, p.objective, p.aiRole, p.comments
+                ]);
             });
-
-            // Codificación UTF-8 con la marca BOM para apertura correcta en Excel sin distorsión de acentos
-            const csvContent = "\uFEFF" + csvRows.join("\n");
-            const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
-            const csvUrl = URL.createObjectURL(blob);
-
-            const tempLink = document.createElement('a');
-            tempLink.href = csvUrl;
-            tempLink.setAttribute('download', `base_proyectos_PIT_UNEXPO_${new Date().toISOString().slice(0,10)}.csv`);
-            document.body.appendChild(tempLink);
-            tempLink.click();
-            document.body.removeChild(tempLink);
+            const content = "\uFEFF" + rows.map(r => r.map(v => `"${(v || '').replace(/"/g, '""')}"`).join(",")).join("\n");
+            const blob = new Blob([content], { type: 'text/csv;charset=utf-8;' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.setAttribute('download', `PIT_UNEXPO_${new Date().toISOString().slice(0,10)}.csv`);
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
         };
 
         function escapeHtml(str) {
@@ -651,11 +563,123 @@
             return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
         }
 
-        // Ejecutar inicialización al cargar la página
         window.addEventListener('DOMContentLoaded', initFirebase);
     </script>
 
     <script>
+        const templates = {
+            tech: {
+                title: "Simulador de Ensayos Mecánicos Asistido",
+                profile: "Ingeniero / Estudiante de Ingeniería",
+                problem: "Los estudiantes tardan horas analizando diagramas de esfuerzo y cometen errores aritméticos.",
+                objective: "Construir un asistente en AI Studio que reciba datos crudos y genere un reporte estructural.",
+                aiRole: "Procesará datos numéricos, identificará el límite elástico y redactará las conclusiones."
+            },
+            doc: {
+                title: "Diseñador de Evaluaciones Adaptativas",
+                profile: "Docente Universitario",
+                problem: "Diseñar múltiples versiones de exámenes del mismo nivel de complejidad toma demasiado tiempo.",
+                objective: "Desarrollar una Gema que proponga un banco de preguntas alineado al programa analítico.",
+                aiRole: "Evaluará la taxonomía de los objetivos del programa y redactará enunciados equivalentes."
+            },
+            adm: {
+                title: "Clasificador Automatizado de Solicitudes de Equivalencia",
+                profile: "Personal Administrativo",
+                problem: "La acumulación física de expedientes y la lentitud al contrastar planes de estudio con otras universidades.",
+                objective: "Crear un agente que reciba las materias cursadas y sugiera el porcentaje de equivalencia automática.",
+                aiRole: "Escaneará los programas externos anclados con NotebookLM y medirá su concordancia semántica."
+            }
+        };
+
+        function loadTemplate(key) {
+            const t = templates[key];
+            document.getElementById('p-title').value = t.title;
+            document.getElementById('p-profile').value = t.profile;
+            document.getElementById('p-problem').value = t.problem;
+            document.getElementById('p-objective').value = t.objective;
+            document.getElementById('p-ai-role').value = t.aiRole;
+            updateProposalPreview();
+        }
+
+        function updateProposalPreview() {
+            const title = document.getElementById('p-title').value || "Mi Proyecto de IA";
+            const profile = document.getElementById('p-profile').value;
+            const problem = document.getElementById('p-problem').value || "Escribe a la izquierda para comenzar...";
+            const objective = document.getElementById('p-objective').value || "Describe el resultado esperado.";
+            const aiRole = document.getElementById('p-ai-role').value || "Cómo asistirá el modelo.";
+
+            document.getElementById('preview-title').textContent = title;
+            document.getElementById('preview-profile-tag').textContent = profile;
+            document.getElementById('preview-problem').textContent = problem;
+            document.getElementById('preview-objective').textContent = objective;
+            document.getElementById('preview-ai-role').textContent = aiRole;
+        }
+
+        function copyProposalToClipboard() {
+            const title = document.getElementById('preview-title').textContent;
+            const profile = document.getElementById('preview-profile-tag').textContent;
+            const problem = document.getElementById('preview-problem').textContent;
+            const objective = document.getElementById('preview-objective').textContent;
+            const aiRole = document.getElementById('preview-ai-role').textContent;
+
+            const text = `PROYECTO PIT\nTítulo: ${title}\nPerfil: ${profile}\nProblema: ${problem}\nObjetivo: ${objective}\nIA: ${aiRole}`;
+
+            const dummy = document.createElement("textarea");
+            document.body.appendChild(dummy);
+            dummy.value = text;
+            dummy.select();
+            document.execCommand("copy");
+            document.body.removeChild(dummy);
+
+            const status = document.getElementById('copy-status');
+            status.classList.remove('hidden');
+            setTimeout(() => status.classList.add('hidden'), 2000);
+        }
+
+        function openContactModal() {
+            document.getElementById('modal-proj-title').textContent = document.getElementById('preview-title').textContent;
+            document.getElementById('modal-proj-profile').textContent = document.getElementById('preview-profile-tag').textContent;
+            document.getElementById('modal-form-content').classList.remove('hidden');
+            document.getElementById('modal-success-content').classList.add('hidden');
+            document.getElementById('contact-modal').classList.remove('hidden');
+            document.getElementById('contact-modal').classList.add('flex');
+        }
+
+        function closeContactModal() {
+            document.getElementById('contact-modal').classList.add('hidden');
+            document.getElementById('contact-modal').classList.remove('flex');
+        }
+
+        function openAdminAccessModal() {
+            document.getElementById('admin-error-text').classList.add('hidden');
+            document.getElementById('admin-pass').value = '';
+            document.getElementById('admin-access-modal').classList.remove('hidden');
+            document.getElementById('admin-access-modal').classList.add('flex');
+        }
+
+        function closeAdminAccessModal() {
+            document.getElementById('admin-access-modal').classList.add('hidden');
+            document.getElementById('admin-access-modal').classList.remove('flex');
+        }
+
+        function validateAdminAccess() {
+            const pass = document.getElementById('admin-pass').value;
+            if (pass === 'unexpo2026') {
+                closeAdminAccessModal();
+                document.getElementById('admin-console-modal').classList.remove('hidden');
+                document.getElementById('admin-console-modal').classList.add('flex');
+            } else {
+                document.getElementById('admin-error-text').classList.remove('hidden');
+            }
+        }
+
+        function secureCloseAdminConsole() {
+            document.getElementById('admin-pass').value = '';
+            document.getElementById('admin-console-modal').classList.add('hidden');
+            document.getElementById('admin-console-modal').classList.remove('flex');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
         const pitData = {
             ingeniero: {
                 title: "Carril Técnico",
@@ -684,8 +708,8 @@
                 desc: "Aportan el conocimiento de los reglamentos, los expedientes institucionales y la resolución de la burocracia universitaria.",
                 items: ["Automatización de minutas de consejos de departamento.", "Clasificador inteligente de reclamos estudiantiles.", "Procesamiento de datos ofimáticos con lenguaje natural."],
                 analogies: [
-                    { concept: "Tokenización", desc: "Desglose formal de un expediente en sus campos mínimos de datos: nombre del alumno, cédula y código de materia." },
-                    { concept: "Temperatura (T)", desc: "Apego al reglamento. T=0 representa un estricto seguimiento literal de la norma; T=1 permite buscar soluciones de equivalencia creativas." },
+                    { concept: "Tokenización", desc: "Desglose de un expediente en sus campos mínimos de datos: nombre del alumno, cédula y carrera." },
+                    { concept: "Temperatura (T)", desc: "Apego al reglamento. T=0 representa estricta literalidad; T=1 permite flexibilidad y equivalencias." },
                     { concept: "Espacio Latente", desc: "El archivo físico de expedientes, estructurado para que los documentos de un mismo trámite fluyan de forma natural en el mismo estante." },
                     { concept: "Prompt ToT", desc: "El flujo de firmas consecutivas para la aprobación de un grado, evaluando los requisitos y alternativas en cada oficina." }
                 ]
@@ -696,175 +720,40 @@
             s1: {
                 mod: "Módulo 1",
                 title: "Sesión 1: Lógica de LLMs y el Primer Disparo",
-                theory: "Introducción conceptual a LLMs. Tokenización, espacio latente y Temperatura (T). Redacción estructurada de prompts utilizando el marco de trabajo TRICE y edición colaborativa.",
-                tools1: "Interfaces interactivas de tokens, Gemini Canvas.",
-                practice: "Fase 0-2 del PIT: Definición de expectativas, selección de carril (Técnico/Docente/Admin), y taller de constitución de equipos con mapeo de problemas.",
-                tools2: "Elevator Pitch estricto de 60 segundos por pareja."
+                theory: "Tokenización, espacio latente y Temperatura (T). Redacción de prompts TRICE y edición colaborativa.",
+                tools1: "Gemini, Gemini Canvas",
+                practice: "Fase 0-2: Definición de expectativas, selección de carril y constitución de equipos con mapeo de dolores.",
+                tools2: "Elevator Pitch de 60 segundos por pareja."
             },
             s2: {
                 mod: "Módulo 1",
                 title: "Sesión 2: Anclaje y Aprendizaje Guiado",
-                theory: "Técnicas avanzadas de anclaje de datos para eliminar alucinaciones. Metodologías de búsqueda extendida en la web para normativas e investigaciones.",
-                tools1: "NotebookLM, Deep Research / Gemini Search.",
-                practice: "Fase 3-5 del PIT: Carga de material oficial UNEXPO. Recopilación de evidencia y Taller de Creación de Guías de Trabajo (Borradores de activos).",
-                tools2: "Consolidación en Google Docs interactuando con NotebookLM."
+                theory: "Técnicas avanzadas de anclaje de datos para eliminar alucinaciones. Metodologías de búsqueda de normativas.",
+                tools1: "NotebookLM, Deep Research",
+                practice: "Fase 3-5: Carga de material oficial UNEXPO. Recopilación de evidencia y Taller de Creación de Guías de Trabajo.",
+                tools2: "Google Docs interactuando con NotebookLM."
             },
             s3: {
                 mod: "Módulo 2",
                 title: "Sesión 3: Estructuras de Decisión y Toolbox",
-                theory: "Ingeniería de prompts ToT (Tree of Thoughts). Creación de asistentes personalizados (Gemas) mediante la metodología PARTS. Integración ofimática.",
-                tools1: "Google Gems (Advanced), Simuladores Lógicos.",
-                practice: "Fase 6-9 del PIT: Diseño de ruta lógica. Creación de Prototipo Gema institucional. Procesamiento masivo de datos y validación cruzada entre equipos.",
+                theory: "Ingeniería de prompts ToT (Tree of Thoughts). Creación de asistentes personalizados (Gemas) mediante PARTS.",
+                tools1: "Google Gems, Simuladores Lógicos",
+                practice: "Fase 6-9: Diseño de ruta lógica. Creación de Prototipo Gema institucional. Procesamiento masivo de datos.",
                 tools2: "Google Sheets con Gemini Extensions."
             },
             s4: {
                 mod: "Módulo 2",
                 title: "Sesión 4: Ecosistema Studio y Agentes No-Code",
-                theory: "Migración a entorno profesional (AI Studio) ajustando filtros y temperatura. Transición hacia IA Agéntica autónoma, planificación recursiva y tool calling.",
-                tools1: "Google AI Studio, Coze.",
-                practice: "Fase 10-13 del PIT: Construcción de agente autónomo visual. Ensamblaje y revisión de calidad. Firma de auditoría técnica (Human-in-the-loop) y socialización grupal.",
+                theory: "Migración a entorno profesional (AI Studio) ajustando filtros y temperatura. Transición hacia IA Agéntica autónoma.",
+                tools1: "Google AI Studio, Coze",
+                practice: "Fase 10-13: Construcción de agente autónomo visual. Ensamblaje y revisión de calidad. Firma de auditoría técnica.",
                 tools2: "Firma digital y Círculo de Discusión en aula."
             }
         };
 
-        const templates = {
-            tech: {
-                title: "Simulador de Ensayos Mecánicos Asistido",
-                profile: "Ingeniero / Estudiante de Ingeniería",
-                problem: "Los estudiantes de laboratorio tardan horas analizando diagramas de esfuerzo-deformación y cometen errores en los informes al calcular la fatiga de materiales.",
-                objective: "Construir un asistente que reciba los datos numéricos crudos de un ensayo y genere un reporte estructural con el análisis de falla predicho.",
-                aiRole: "Procesará arreglos numéricos tabulados, identificará los puntos de cedencia y redactará la conclusión técnica del informe automáticamente."
-            },
-            doc: {
-                title: "Diseñador de Evaluaciones Adaptativas",
-                profile: "Docente Universitario",
-                problem: "Diseñar exámenes parciales con el mismo nivel de complejidad pero diferentes preguntas.",
-                objective: "Desarrollar un asistente que analice el programa de la materia y diseñe tres exámenes paralelos de un determinado tema.",
-                aiRole: "Analizará el nivel taxonómico de los objetivos del pensum y redactará preguntas de desarrollo y rúbricas alineadas con los documentos especificados."
-            },
-            adm: {
-                title: "Clasificador Automatizado de Solicitudes de Equivalencia",
-                profile: "Personal Administrativo",
-                problem: "La acumulación física y digital de expedientes de traslado externo satura el departamento administrativo por la lentitud al contrastar asignaturas.",
-                objective: "Crear un agente que reciba las materias cursadas externamente y sugiera la equivalencia con las asignaturas del pensum oficial.",
-                aiRole: "Analizará los programas externos y generará un reporte preliminar de concordancia semántica de contenidos."
-            }
-        };
-
-        function loadTemplate(key) {
-            const template = templates[key];
-            document.getElementById('p-title').value = template.title;
-            document.getElementById('p-profile').value = template.profile;
-            document.getElementById('p-problem').value = template.problem;
-            document.getElementById('p-objective').value = template.objective;
-            document.getElementById('p-ai-role').value = template.aiRole;
-            updateProposalPreview();
-        }
-
-        function updateProposalPreview() {
-            const title = document.getElementById('p-title').value || "Mi Proyecto de IA";
-            const profile = document.getElementById('p-profile').value;
-            const problem = document.getElementById('p-problem').value || "Sin definir aún. Escribe en el cuadro de la izquierda para comenzar...";
-            const objective = document.getElementById('p-objective').value || "Describe cuál es el resultado esperado de esta automatización.";
-            const aiRole = document.getElementById('p-ai-role').value || "¿Cómo ayudará el modelo de lenguaje en este flujo?";
-
-            document.getElementById('preview-title').textContent = title;
-            document.getElementById('preview-profile-tag').textContent = profile;
-            document.getElementById('preview-problem').textContent = problem;
-            document.getElementById('preview-objective').textContent = objective;
-            document.getElementById('preview-ai-role').textContent = aiRole;
-        }
-
-        function copyProposalToClipboard() {
-            const title = document.getElementById('preview-title').textContent;
-            const profile = document.getElementById('preview-profile-tag').textContent;
-            const problem = document.getElementById('preview-problem').textContent;
-            const objective = document.getElementById('preview-objective').textContent;
-            const aiRole = document.getElementById('preview-ai-role').textContent;
-
-            const textToCopy = `FICHA PRELIMINAR DE PROYECTO PIT\n\nTítulo: ${title}\nPerfil: ${profile}\n\n1. Problema:\n${problem}\n\n2. Objetivo de Solución:\n${objective}\n\n3. Rol de la IA:\n${aiRole}`;
-
-            const dummy = document.createElement("textarea");
-            document.body.appendChild(dummy);
-            dummy.value = textToCopy;
-            dummy.select();
-            document.execCommand("copy");
-            document.body.removeChild(dummy);
-
-            const status = document.getElementById('copy-status');
-            status.classList.remove('hidden');
-            setTimeout(() => {
-                status.classList.add('hidden');
-            }, 2000);
-        }
-
-        /* Modal para que el estudiante envíe la propuesta */
-        function openContactModal() {
-            const title = document.getElementById('preview-title').textContent;
-            const profile = document.getElementById('preview-profile-tag').textContent;
-
-            document.getElementById('modal-proj-title').textContent = title;
-            document.getElementById('modal-proj-profile').textContent = profile;
-
-            // Restablecer vistas del modal
-            document.getElementById('modal-form-content').classList.remove('hidden');
-            document.getElementById('modal-success-content').classList.add('hidden');
-            document.getElementById('proposal-submit-form').reset();
-
-            document.getElementById('contact-modal').classList.remove('hidden');
-            document.getElementById('contact-modal').classList.add('flex');
-        }
-
-        function closeContactModal() {
-            document.getElementById('contact-modal').classList.add('hidden');
-            document.getElementById('contact-modal').classList.remove('flex');
-        }
-
-        /* Gestión de Acceso Administrativo */
-        function openAdminAccessModal() {
-            document.getElementById('admin-error-text').classList.add('hidden');
-            document.getElementById('admin-pass').value = '';
-            document.getElementById('admin-access-modal').classList.remove('hidden');
-            document.getElementById('admin-access-modal').classList.add('flex');
-        }
-
-        function closeAdminAccessModal() {
-            document.getElementById('admin-access-modal').classList.add('hidden');
-            document.getElementById('admin-access-modal').classList.remove('flex');
-        }
-
-        function validateAdminAccess() {
-            const key = document.getElementById('admin-pass').value;
-            // Contraseña básica para el instructor
-            if (key === '0626') {
-                closeAdminAccessModal();
-                openAdminConsoleModal();
-            } else {
-                document.getElementById('admin-error-text').classList.remove('hidden');
-            }
-        }
-
-        function openAdminConsoleModal() {
-            document.getElementById('admin-console-modal').classList.remove('hidden');
-            document.getElementById('admin-console-modal').classList.add('flex');
-        }
-
-        function closeAdminConsoleModal() {
-            document.getElementById('admin-console-modal').classList.add('hidden');
-            document.getElementById('admin-console-modal').classList.remove('flex');
-        }
-
-        /* Cierre Seguro de Consola y Retorno */
-        function secureCloseAdminConsole() {
-            // Limpieza estricta de credenciales en caché de formulario
-            document.getElementById('admin-pass').value = '';
-            closeAdminConsoleModal();
-            // Desplazamiento suave al tope del Landing Page
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
         function renderAnalogies(analogies) {
             const container = document.getElementById('pit-analogies');
+            if (!container) return;
             container.innerHTML = analogies.map(item => `
                 <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 card-hover">
                     <h5 class="font-bold text-slate-800 text-base mb-1">🔍 ${item.concept}</h5>
@@ -903,6 +792,7 @@
 
         function initSessions() {
             const container = document.getElementById('session-buttons');
+            if (!container) return;
             let html = '';
             for (let i = 1; i <= 4; i++) {
                 html += `<button class="session-btn w-full text-left px-6 py-4 rounded-xl border border-slate-200 font-semibold text-slate-700 transition-colors hover:bg-blue-50 focus:outline-none ${i === 1 ? 'session-btn-active border-blue-600' : 'bg-white'}" data-session="s${i}">Sesión ${i}</button>`;
