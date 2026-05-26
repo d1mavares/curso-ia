@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panel Interactivo - Curso IA UNEXPO v2.1</title>
+    <title>Curso IA para Ingeniería - UNEXPO</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -42,36 +42,33 @@
 </head>
 <body class="antialiased pb-12">
 
-    <!-- Chosen Palette: Slate Backgrounds (#f8fafc, #f1f5f9), Blue Accents (#2563eb, #1e40af) for academic/tech feel, Amber highlights (#d97706) for call-to-actions. -->
-    
-    <!-- Application Structure Plan: The SPA uses a dashboard-style architecture optimized for exploring a multifaceted educational program. It begins with a high-level strategic overview (metrics and pricing), flows into an audience-specific interactive section (allowing users to see their tailored learning path), presents the pedagogical bridging mechanism (analogies grid), and concludes with a deep-dive interactive session timeline. This structure was chosen because it breaks down the linear syllabus into task-oriented views: "What is it?", "Who is it for?", "How is it taught?", and "When does it happen?", maximizing comprehension for a diverse stakeholder audience. -->
-
-    <!-- Visualization & Content Choices: 
-         1. Pricing/Structure -> Goal: Compare -> Visualization: Bar Chart (Chart.js) -> Justification: Clearly demonstrates the financial benefit of the combo package vs individual modules.
-         2. Session Time Allocation -> Goal: Inform -> Visualization: Doughnut Chart (Chart.js) -> Justification: Visually breaks down the strict 3.5h session into theory, break, and practice.
-         3. Audience Tracks (PIT) -> Goal: Organize -> Visualization: Interactive Tabs (Vanilla JS) -> Justification: Prevents information overload by only showing the project track relevant to the selected persona (Engineer/Teacher/Admin).
-         4. Analogies -> Goal: Relate -> Visualization: Responsive Grid Cards (Tailwind) -> Justification: Directly compares technical concepts with non-technical analogies side-by-side.
-         5. Syllabus Timeline -> Goal: Change/Process -> Visualization: Interactive Button Group + Detail Panel -> Justification: Allows non-linear exploration of the 4 sessions, keeping the UI compact.
-         Libraries: Tailwind CSS for layout, Chart.js for data viz. NO SVG or Mermaid used (Unicode icons implemented instead). -->
-
-    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
-
     <header class="bg-slate-900 text-white py-12 px-6 shadow-md border-b-4 border-blue-600">
-        <div class="max-w-6xl mx-auto">
-            <h1 class="text-4xl md:text-5xl font-bold mb-4">🤖 Curso IA UNEXPO v2.1</h1>
-            <p class="text-xl text-slate-300 max-w-3xl leading-relaxed">
-                Panel interactivo del programa instruccional definitivo. Explora la estructura modular, las rutas de aprendizaje adaptativas para público mixto y la planificación estratégica del Proyecto de Integración Técnica (PIT).
-            </p>
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+            <div>
+                <h1 class="text-4xl md:text-5xl font-bold mb-4">Curso IA para Ingeniería - UNEXPO</h1>
+                <p class="text-xl text-slate-300 max-w-2xl leading-relaxed">
+                    Planificador estratégico de proyectos de Inteligencia Artificial y base de datos centralizada de propuestas (PIT).
+                </p>
+            </div>
+            <!-- Botón de acceso directo a la consola docente -->
+            <button onclick="openAdminAccessModal()" class="px-5 py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl shadow-lg transition-all transform hover:scale-105">
+                🏫 Consola Docente
+            </button>
         </div>
     </header>
 
     <main class="max-w-6xl mx-auto px-6 mt-10 space-y-16">
 
+        <!-- Banner de estado de conexión -->
+        <div id="connection-banner" class="hidden p-4 rounded-xl text-sm font-semibold flex items-center justify-between">
+            <span id="connection-status-text">Conectando con la base de datos...</span>
+        </div>
+
         <section id="panorama" class="space-y-6">
             <div class="mb-8">
                 <h2 class="text-3xl font-bold text-slate-800 border-l-4 border-blue-600 pl-4">Estrategia y Estructura Modular</h2>
                 <p class="mt-4 text-slate-600 text-lg leading-relaxed">
-                    Esta sección visualiza la arquitectura base del programa. Se divide en dos módulos de dos semanas, diseñados para actuar como un embudo de conversión. El gráfico de barras ilustra la ventaja económica de la certificación completa, mientras que el gráfico de anillo detalla la rigurosa distribución del tiempo en cada encuentro presencial o híbrido.
+                    Esta sección visualiza la arquitectura base del programa. Se divide en dos módulos de dos semanas, diseñados para actuar como un embudo de conversión. El gráfico de barras ilustra la ventaja económica de la certificación completa, mientras que el gráfico de anillo detalla la distribución de la carga de trabajo activo en cada encuentro presencial o híbrido.
                 </p>
             </div>
 
@@ -85,20 +82,20 @@
                 </div>
 
                 <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
-                    <h3 class="text-xl font-bold mb-4 text-center">Distribución Horaria por Sesión (3.5h)</h3>
+                    <h3 class="text-xl font-bold mb-4 text-center">Carga de Trabajo Activo por Sesión (210 min)</h3>
                     <div class="chart-container">
                         <canvas id="timeChart"></canvas>
                     </div>
-                    <p class="text-sm text-slate-500 mt-4 text-center">Equilibrio estricto entre teoría, descanso cognitivo y trabajo práctico (PIT).</p>
+                    <p class="text-sm text-slate-500 mt-4 text-center">Distribución del tiempo docente dedicado exclusivamente a la instrucción y la tutoría guiada (no incluye receso).</p>
                 </div>
             </div>
         </section>
 
         <section id="rutas" class="space-y-6 bg-slate-100 p-8 rounded-3xl border border-slate-200">
             <div class="mb-6">
-                <h2 class="text-3xl font-bold text-slate-800 border-l-4 border-blue-600 pl-4">Rutas del Proyecto (PIT) por Perfil</h2>
+                <h2 class="text-3xl font-bold text-slate-800 border-l-4 border-blue-600 pl-4">Rutas del Proyecto (PIT) y Equivalencias por Perfil</h2>
                 <p class="mt-4 text-slate-600 text-lg leading-relaxed">
-                    El aula aloja un público mixto. Selecciona un perfil a continuación para descubrir cómo el Proyecto de Integración Técnica (PIT) se adapta a sus necesidades específicas, fomentando la sinergia en equipos interdisciplinarios (Ej. Estudiante + Administrativo).
+                    El aula aloja un público mixto. Selecciona un perfil a continuación para descubrir cómo el Proyecto de Integración Técnica (PIT) se adapta a sus necesidades, y explora las equivalencias conceptuales diseñadas específicamente para facilitar la comprensión de cada grupo.
                 </p>
             </div>
 
@@ -108,29 +105,29 @@
                 <button class="tab-btn px-6 py-3 text-lg text-slate-500 hover:text-blue-600 transition-colors" data-target="administrativo">🏢 Administrativos</button>
             </div>
 
-            <div id="pit-content" class="bg-white p-8 rounded-2xl shadow-sm min-h-[250px]">
-                <h3 id="pit-title" class="text-2xl font-bold text-blue-800 mb-4">Carril Técnico</h3>
-                <p id="pit-desc" class="text-lg text-slate-700 mb-6">Aportan la agilidad digital y el control técnico de los parámetros en las plataformas de desarrollo.</p>
-                <ul id="pit-list" class="list-disc list-inside space-y-3 text-slate-600 text-lg">
-                    <li>Auditoría de código.</li>
-                    <li>Análisis de datos de laboratorios.</li>
-                    <li>Simuladores en Python.</li>
-                </ul>
+            <div id="pit-content" class="bg-white p-8 rounded-2xl shadow-sm min-h-[350px] space-y-8">
+                <div>
+                    <h3 id="pit-title" class="text-2xl font-bold text-blue-800 mb-4">Carril Técnico</h3>
+                    <p id="pit-desc" class="text-lg text-slate-700 mb-6">Aportan la agilidad digital y el control técnico de los parámetros en las plataformas de desarrollo.</p>
+                    
+                    <h4 class="text-sm font-bold uppercase tracking-wider text-slate-400 mb-3">Actividades Principales en el PIT</h4>
+                    <ul id="pit-list" class="list-disc list-inside space-y-3 text-slate-600 text-lg mb-8">
+                        <li>Auditoría de código.</li>
+                        <li>Análisis de datos de laboratorios.</li>
+                        <li>Simuladores en Python.</li>
+                    </ul>
+                </div>
+
+                <div class="border-t border-slate-100 pt-6">
+                    <h4 class="text-sm font-bold uppercase tracking-wider text-blue-500 mb-4">Equivalencias Conceptuales y Analogías del Perfil</h4>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="pit-analogies">
+                        <!-- Se genera dinámicamente -->
+                    </div>
+                </div>
             </div>
         </section>
 
-        <section id="diccionario" class="space-y-6">
-            <div class="mb-8">
-                <h2 class="text-3xl font-bold text-slate-800 border-l-4 border-blue-600 pl-4">Diccionario de Analogías Transversales</h2>
-                <p class="mt-4 text-slate-600 text-lg leading-relaxed">
-                    Para superar el reto lingüístico de enseñar a perfiles tan dispares simultáneamente, el programa utiliza analogías. Estas tarjetas comparan la explicación técnica de un concepto de IA con su traducción pedagógica para personal no técnico. Pase el cursor sobre ellas para explorar.
-                </p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="analogies-grid">
-            </div>
-        </section>
-
+        <!-- Seccion: Planificación Académica Interactiva -->
         <section id="planificacion" class="space-y-6">
             <div class="mb-8">
                 <h2 class="text-3xl font-bold text-slate-800 border-l-4 border-blue-600 pl-4">Planificación Académica Interactiva</h2>
@@ -164,57 +161,525 @@
             </div>
         </section>
 
+        <!-- Sección: Concepción de tu Propuesta PIT -->
+        <section id="concepcion-proyecto" class="space-y-6 bg-blue-50/50 p-8 rounded-3xl border border-blue-100">
+            <div class="mb-6">
+                <h2 class="text-3xl font-bold text-slate-800 border-l-4 border-blue-600 pl-4">Ficha del Proyecto de Interés Técnico (PIT)</h2>
+                <p class="mt-4 text-slate-600 text-lg leading-relaxed">
+                    Estructura tu propuesta inicial sobre un tema que te apasione o un flujo de trabajo que desees optimizar. Rellena el siguiente formulario o selecciona una de nuestras plantillas rápidas. Al hacer clic en <strong>"Enviar Propuesta"</strong>, tu idea se registrará directamente en el panel del docente para su revisión y aprobación.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                <!-- Formulario de Entrada -->
+                <div class="lg:col-span-7 bg-white p-6 rounded-2xl shadow-sm border border-slate-200 space-y-6">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-slate-400 block mb-2">Plantillas de ejemplo para acelerar la redacción</span>
+                        <div class="flex flex-wrap gap-2">
+                            <button onclick="loadTemplate('tech')" class="px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 text-sm rounded-lg transition-colors">⚙️ Proyecto de Ingeniería</button>
+                            <button onclick="loadTemplate('doc')" class="px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 text-sm rounded-lg transition-colors">🎓 Proyecto Docente</button>
+                            <button onclick="loadTemplate('adm')" class="px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 text-sm rounded-lg transition-colors">🏢 Proyecto Administrativo</button>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-semibold text-slate-700 mb-1" for="p-title">Título del Proyecto</label>
+                            <input type="text" id="p-title" oninput="updateProposalPreview()" placeholder="Ej. Automatización de Minutas" class="w-full px-4 py-2 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:outline-none text-slate-800">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-slate-700 mb-1" for="p-profile">Perfil del Participante</label>
+                            <select id="p-profile" onchange="updateProposalPreview()" class="w-full px-4 py-2 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:outline-none text-slate-800">
+                                <option value="Ingeniero / Estudiante de Ingeniería">⚙️ Ingeniero / Estudiante</option>
+                                <option value="Docente Universitario">🎓 Docente Universitario</option>
+                                <option value="Personal Administrativo">🏢 Personal Administrativo</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-700 mb-1" for="p-problem">Problema o Necesidad a Resolver</label>
+                        <textarea id="p-problem" oninput="updateProposalPreview()" rows="2" placeholder="Describe qué cuello de botella, retraso o inconveniente técnico u operativo te gustaría solventar en tu entorno o en la UNEXPO..." class="w-full px-4 py-2 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:outline-none text-slate-800 text-sm"></textarea>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-700 mb-1" for="p-objective">Objetivo Principal del Sistema</label>
+                        <textarea id="p-objective" oninput="updateProposalPreview()" rows="2" placeholder="¿Qué esperas que logre el sistema una vez que esté completamente operativo?..." class="w-full px-4 py-2 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:outline-none text-slate-800 text-sm"></textarea>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-700 mb-1" for="p-ai-role">¿Qué rol desempeñará la IA?</label>
+                        <textarea id="p-ai-role" oninput="updateProposalPreview()" rows="2" placeholder="Ej. Clasificar y archivar correos, auditar de forma automática fragmentos de código, o sugerir rúbricas de evaluación basadas en un programa analítico..." class="w-full px-4 py-2 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:outline-none text-slate-800 text-sm"></textarea>
+                    </div>
+                </div>
+
+                <!-- Tarjeta Visual de Vista Previa -->
+                <div class="lg:col-span-5 flex flex-col justify-between bg-slate-900 text-slate-100 p-6 rounded-2xl shadow-md border-t-4 border-amber-500">
+                    <div>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-xs font-bold uppercase tracking-wider text-amber-500">Borrador en tiempo real</span>
+                            <span class="text-xs bg-slate-800 text-slate-300 px-2 py-1 rounded-md" id="preview-profile-tag">Ingeniero / Estudiante</span>
+                        </div>
+                        
+                        <h3 class="text-2xl font-bold text-white mb-4" id="preview-title">Mi Proyecto de IA</h3>
+                        
+                        <div class="space-y-4 text-sm">
+                            <div>
+                                <span class="text-slate-400 block text-xs uppercase font-semibold">1. Problema Identificado:</span>
+                                <p class="text-slate-300 italic" id="preview-problem">Sin definir aún. Escribe en el cuadro de la izquierda para comenzar...</p>
+                            </div>
+                            <div>
+                                <span class="text-slate-400 block text-xs uppercase font-semibold">2. Objetivo de Solución:</span>
+                                <p class="text-slate-300" id="preview-objective">Describe cuál es el resultado esperado de esta automatización.</p>
+                            </div>
+                            <div>
+                                <span class="text-slate-400 block text-xs uppercase font-semibold">3. Función de la Inteligencia Artificial:</span>
+                                <p class="text-slate-300" id="preview-ai-role">¿Cómo ayudará el modelo de lenguaje en este flujo?</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="mt-6 pt-4 border-t border-slate-800 flex flex-col sm:flex-row gap-2">
+                            <button onclick="copyProposalToClipboard()" class="w-full sm:w-1/3 py-2.5 bg-slate-800 hover:bg-slate-750 text-slate-300 rounded-xl transition-colors text-xs text-center font-semibold">📋 Copiar Texto</button>
+                            <button onclick="openContactModal()" class="w-full sm:w-2/3 py-2.5 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-xl transition-colors text-xs text-center shadow-lg">🚀 Enviar Propuesta al Docente</button>
+                        </div>
+                        <div class="text-center mt-2">
+                            <span id="copy-status" class="text-xs text-slate-400 hidden">¡Copiado al portapapeles!</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
     </main>
 
-    <footer class="bg-slate-900 text-slate-400 py-8 text-center mt-16">
-        <p>© 2026 Panel Interactivo - Basado en la propuesta instruccional de IA UNEXPO v2.1</p>
-    </footer>
+    <!-- Modal de Envío de Propuesta de Proyecto (PIT) -->
+    <div id="contact-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm hidden items-center justify-center z-50 p-4">
+        <div class="bg-white rounded-2xl max-w-lg w-full p-6 shadow-2xl border border-slate-100 space-y-4 relative">
+            <button onclick="closeContactModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 text-2xl font-semibold focus:outline-none">&times;</button>
+            
+            <div id="modal-form-content">
+                <div class="mb-4">
+                    <h3 class="text-xl font-bold text-slate-800">🚀 Registro de Propuesta</h3>
+                    <p class="text-sm text-slate-500 mt-1">Completa tus datos de identificación para registrar tu propuesta formalmente en el sistema consolidado.</p>
+                </div>
+
+                <form id="proposal-submit-form" onsubmit="handleProposalSubmit(event)" class="space-y-4">
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1" for="user-name">Tu Nombre Completo</label>
+                        <input type="text" id="user-name" required placeholder="Ej. Prof. Juan Pérez o Br. Luis Gómez" class="w-full px-4 py-2 border border-slate-200 rounded-xl text-slate-800 text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1" for="user-email">Correo Electrónico</label>
+                        <input type="email" id="user-email" required placeholder="Ej. juan.perez@unexpo.edu.ve" class="w-full px-4 py-2 border border-slate-200 rounded-xl text-slate-800 text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1" for="user-comment">Comentarios Adicionales (Opcional)</label>
+                        <textarea id="user-comment" rows="2" placeholder="Preguntas o precisiones adicionales sobre tu proyecto..." class="w-full px-4 py-2 border border-slate-200 rounded-xl text-slate-800 text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none"></textarea>
+                    </div>
+
+                    <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 text-xs text-slate-600 space-y-1">
+                        <span class="font-bold text-slate-700 block">Propuesta a enviar:</span>
+                        <p class="truncate"><span class="font-semibold">Título:</span> <span id="modal-proj-title">Proyecto sin definir</span></p>
+                        <p class="truncate"><span class="font-semibold">Perfil:</span> <span id="modal-proj-profile">Ingeniero / Estudiante</span></p>
+                    </div>
+
+                    <div class="flex gap-2 pt-2">
+                        <button type="button" onclick="closeContactModal()" class="w-1/2 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 text-sm font-semibold rounded-xl transition-colors">Cancelar</button>
+                        <button type="submit" id="submit-btn-text" class="w-1/2 py-2.5 bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold rounded-xl transition-colors">Enviar Propuesta</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Pantalla de Éxito del Envío (Se muestra tras guardar en base de datos) -->
+            <div id="modal-success-content" class="hidden text-center py-6 space-y-4">
+                <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center text-3xl mx-auto">✓</div>
+                <h3 class="text-2xl font-bold text-slate-800">¡Propuesta Registrada!</h3>
+                <p class="text-slate-600 text-sm leading-relaxed max-w-sm mx-auto">
+                    Tu ficha técnica ha sido guardada directamente en la base de datos del curso. El instructor ya puede visualizar y exportar tu proyecto desde su consola consolidada.
+                </p>
+                <div class="pt-4">
+                    <button onclick="closeContactModal()" class="w-full py-2.5 bg-slate-900 hover:bg-slate-800 text-white text-sm font-semibold rounded-xl transition-colors">Entendido</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Acceso a la Consola Docente -->
+    <div id="admin-access-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm hidden items-center justify-center z-50 p-4">
+        <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl border border-slate-100 space-y-4 relative">
+            <button onclick="closeAdminAccessModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 text-2xl font-semibold focus:outline-none">&times;</button>
+            <div>
+                <h3 class="text-xl font-bold text-slate-800">🔐 Acceso a Consola Docente</h3>
+                <p class="text-sm text-slate-500 mt-1">Ingresa las credenciales autorizadas del instructor para gestionar y exportar todos los proyectos acumulados.</p>
+            </div>
+            <div class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1" for="admin-pass">Clave de Acceso</label>
+                    <input type="password" id="admin-pass" placeholder="Ingresa clave" class="w-full px-4 py-2 border border-slate-200 rounded-xl text-slate-800 text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                </div>
+                <div id="admin-error-text" class="text-xs text-red-500 hidden">Clave incorrecta. Por favor, intenta de nuevo.</div>
+                <div class="flex gap-2 pt-2">
+                    <button type="button" onclick="closeAdminAccessModal()" class="w-1/2 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 text-sm font-semibold rounded-xl transition-colors">Cancelar</button>
+                    <button type="button" onclick="validateAdminAccess()" class="w-1/2 py-2.5 bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold rounded-xl transition-colors">Ingresar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de la Consola Docente (Panel de Control de Proyectos) -->
+    <div id="admin-console-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm hidden items-center justify-center z-40 p-4">
+        <div class="bg-white rounded-2xl max-w-5xl w-full h-[90vh] flex flex-col p-6 shadow-2xl border border-slate-100 relative">
+            <!-- Botón X configurado para salida segura -->
+            <button onclick="secureCloseAdminConsole()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 text-2xl font-semibold focus:outline-none">&times;</button>
+            
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b border-slate-100 pb-4 mb-4 gap-4">
+                <div>
+                    <h3 class="text-2xl font-bold text-slate-800 flex items-center gap-2">🏫 Consola de Administración y Control</h3>
+                    <p class="text-sm text-slate-500">Visualiza en tiempo real las propuestas enviadas por todos los alumnos y descárgalas en formato CSV.</p>
+                </div>
+                <div class="flex flex-wrap gap-2 w-full sm:w-auto">
+                    <button onclick="downloadAllProposalsCSV()" class="px-5 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold rounded-xl text-sm flex items-center gap-2 shadow-md transition-colors w-full sm:w-auto justify-center">
+                        📥 Descargar CSV de Todos los Proyectos
+                    </button>
+                    <!-- Nuevo Botón de Retorno y Salida Segura -->
+                    <button onclick="secureCloseAdminConsole()" class="px-5 py-2.5 bg-slate-700 hover:bg-slate-800 text-white font-semibold rounded-xl text-sm flex items-center gap-2 shadow-md transition-colors w-full sm:w-auto justify-center">
+                        🚪 Volver al Inicio y Cerrar Sesión
+                    </button>
+                </div>
+            </div>
+
+            <!-- Tabla de datos con scroll -->
+            <div class="flex-1 overflow-auto border border-slate-100 rounded-xl bg-slate-50">
+                <table class="w-full text-left text-sm border-collapse">
+                    <thead class="bg-slate-200 text-slate-700 sticky top-0">
+                        <tr>
+                            <th class="p-3 border-b border-slate-200 font-bold">Fecha / Hora</th>
+                            <th class="p-3 border-b border-slate-200 font-bold">Participante</th>
+                            <th class="p-3 border-b border-slate-200 font-bold">Contacto</th>
+                            <th class="p-3 border-b border-slate-200 font-bold">Título del Proyecto</th>
+                            <th class="p-3 border-b border-slate-200 font-bold">Perfil</th>
+                            <th class="p-3 border-b border-slate-200 font-bold">Detalles / Problema</th>
+                            <th class="p-3 border-b border-slate-200 font-bold">Función de la IA</th>
+                        </tr>
+                    </thead>
+                    <tbody id="admin-table-body" class="divide-y divide-slate-100 bg-white">
+                        <!-- Se llena dinámicamente -->
+                        <tr>
+                            <td colspan="7" class="p-8 text-center text-slate-400">Cargando propuestas desde el servidor...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="flex justify-between items-center pt-4 border-t border-slate-100 mt-4 text-xs text-slate-500">
+                <span id="proposal-count-text">Total: 0 propuestas registradas</span>
+                <span>Curso Inteligencia Artificial UNEXPO</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Integración de Firebase y lógica del sistema -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, collection, addDoc, onSnapshot, query, orderBy, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        // Estructura de respaldo en memoria si la configuración global de Firebase no está disponible
+        let proposalsLocalFallback = [
+            {
+                name: "Prof. Alejandro Silva",
+                email: "asilva@unexpo.edu.ve",
+                profile: "Docente Universitario",
+                title: "Asistente de Planificación Académica Mecánica",
+                problem: "La elaboración manual de planes de curso alineados al modelo UNEXPO toma días de análisis normativo.",
+                objective: "Generar borradores pedagógicos integrados de forma instantánea.",
+                aiRole: "Escanear el pensum y recomendar objetivos y horas usando TRICE.",
+                comments: "Proyecto piloto para el departamento.",
+                timestamp: { toDate: () => new Date() }
+            }
+        ];
+
+        let db = null;
+        let auth = null;
+        let user = null;
+        let isFirebaseActive = false;
+        let allProposals = [];
+
+        // Definición estricta de rutas de Firebase (Regla 1)
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'unexpo-ia-course';
+        
+        // Inicialización segura de Firebase
+        const initFirebase = async () => {
+            try {
+                if (typeof __firebase_config !== 'undefined' && __firebase_config) {
+                    const firebaseConfig = JSON.parse(__firebase_config);
+                    const app = initializeApp(firebaseConfig);
+                    auth = getAuth(app);
+                    db = getFirestore(app);
+
+                    // Autenticación primero y prioritario (Regla 3)
+                    if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+                        await signInWithCustomToken(auth, __initial_auth_token);
+                    } else {
+                        await signInAnonymously(auth);
+                    }
+
+                    onAuthStateChanged(auth, (loggedUser) => {
+                        user = loggedUser;
+                        if (user) {
+                            isFirebaseActive = true;
+                            updateConnectionStatus(true);
+                            listenToProposals();
+                        } else {
+                            isFirebaseActive = false;
+                            updateConnectionStatus(false);
+                        }
+                    });
+                } else {
+                    console.log("Inicializando con almacenamiento local (Simulado offline)");
+                    isFirebaseActive = false;
+                    updateConnectionStatus(false);
+                    allProposals = [...proposalsLocalFallback];
+                    renderAdminTable();
+                }
+            } catch (error) {
+                console.error("Error inicializando Firebase:", error);
+                isFirebaseActive = false;
+                updateConnectionStatus(false);
+                allProposals = [...proposalsLocalFallback];
+                renderAdminTable();
+            }
+        };
+
+        function updateConnectionStatus(isConnected) {
+            const banner = document.getElementById('connection-banner');
+            const statusText = document.getElementById('connection-status-text');
+            banner.classList.remove('hidden');
+            if (isConnected) {
+                banner.className = "mb-6 p-4 rounded-xl text-xs font-semibold flex items-center justify-between bg-emerald-50 text-emerald-800 border border-emerald-100";
+                statusText.innerHTML = "🟢 Base de datos sincronizada en vivo con la UNEXPO.";
+            } else {
+                banner.className = "mb-6 p-4 rounded-xl text-xs font-semibold flex items-center justify-between bg-amber-50 text-amber-800 border border-amber-100";
+                statusText.innerHTML = "⚠️ Ejecutándose en modo demostración local (los datos de los proyectos se guardarán en la memoria de esta sesión).";
+            }
+        }
+
+        // Escucha en tiempo real de nuevas propuestas utilizando la ruta pública estricta (Regla 1 y 2)
+        function listenToProposals() {
+            if (!db || !user) return;
+            const collectionRef = collection(db, 'artifacts', appId, 'public', 'data', 'proposals');
+            
+            // Regla 2: Evitamos ordenaciones complejas que requieran índices manuales del lado de Firestore.
+            onSnapshot(collectionRef, (snapshot) => {
+                const list = [];
+                snapshot.forEach((doc) => {
+                    list.push({ id: doc.id, ...doc.data() });
+                });
+                
+                // Ordenamos en memoria del lado del cliente
+                list.sort((a, b) => {
+                    const dateA = a.createdAt ? a.createdAt.toDate() : new Date(0);
+                    const dateB = b.createdAt ? b.createdAt.toDate() : new Date(0);
+                    return dateB - dateA; // Orden descendente (más recientes primero)
+                });
+
+                allProposals = list;
+                renderAdminTable();
+            }, (error) => {
+                console.error("Error leyendo colección de Firestore:", error);
+                // Fallback graceful
+                allProposals = [...proposalsLocalFallback];
+                renderAdminTable();
+            });
+        }
+
+        // Envío de la propuesta
+        window.handleProposalSubmit = async function(event) {
+            event.preventDefault();
+            const submitBtn = document.getElementById('submit-btn-text');
+            submitBtn.textContent = "Procesando...";
+            submitBtn.disabled = true;
+
+            const name = document.getElementById('user-name').value;
+            const email = document.getElementById('user-email').value;
+            const comments = document.getElementById('user-comment').value || "Sin comentarios adicionales.";
+            
+            const title = document.getElementById('preview-title').textContent;
+            const profile = document.getElementById('preview-profile-tag').textContent;
+            const problem = document.getElementById('preview-problem').textContent;
+            const objective = document.getElementById('preview-objective').textContent;
+            const aiRole = document.getElementById('preview-ai-role').textContent;
+
+            const newProposal = {
+                name,
+                email,
+                profile,
+                title,
+                problem,
+                objective,
+                aiRole,
+                comments,
+                createdAt: isFirebaseActive ? serverTimestamp() : { toDate: () => new Date() }
+            };
+
+            if (isFirebaseActive && db && user) {
+                try {
+                    // Ruta pública estricta (Regla 1)
+                    const collectionRef = collection(db, 'artifacts', appId, 'public', 'data', 'proposals');
+                    await addDoc(collectionRef, newProposal);
+                } catch (error) {
+                    console.error("Error al registrar en la nube:", error);
+                    // Caída suave a local
+                    newProposal.timestamp = { toDate: () => new Date() };
+                    proposalsLocalFallback.unshift(newProposal);
+                    allProposals = [...proposalsLocalFallback];
+                    renderAdminTable();
+                }
+            } else {
+                newProposal.timestamp = { toDate: () => new Date() };
+                proposalsLocalFallback.unshift(newProposal);
+                allProposals = [...proposalsLocalFallback];
+                renderAdminTable();
+            }
+
+            // Cambiar vista del modal a Éxito total
+            submitBtn.textContent = "Enviar Propuesta";
+            submitBtn.disabled = false;
+            document.getElementById('modal-form-content').classList.add('hidden');
+            document.getElementById('modal-success-content').classList.remove('hidden');
+        };
+
+        // Renderizado de la tabla de control
+        function renderAdminTable() {
+            const tbody = document.getElementById('admin-table-body');
+            const countText = document.getElementById('proposal-count-text');
+            
+            if (!allProposals || allProposals.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="7" class="p-8 text-center text-slate-400">Aún no se han registrado propuestas en el sistema.</td></tr>`;
+                countText.textContent = "Total: 0 propuestas registradas";
+                return;
+            }
+
+            countText.textContent = `Total: ${allProposals.length} propuesta(s) registrada(s)`;
+
+            tbody.innerHTML = allProposals.map(prop => {
+                let dateStr = "Sin fecha";
+                if (prop.createdAt && typeof prop.createdAt.toDate === 'function') {
+                    const date = prop.createdAt.toDate();
+                    dateStr = date.toLocaleString('es-VE', { hour12: true });
+                } else if (prop.timestamp && typeof prop.timestamp.toDate === 'function') {
+                    dateStr = prop.timestamp.toDate().toLocaleString('es-VE', { hour12: true });
+                }
+                
+                return `
+                    <tr class="hover:bg-slate-50 transition-colors">
+                        <td class="p-3 text-xs text-slate-500 whitespace-nowrap">${dateStr}</td>
+                        <td class="p-3 font-semibold text-slate-800">${escapeHtml(prop.name)}</td>
+                        <td class="p-3 text-xs text-blue-600"><a href="mailto:${escapeHtml(prop.email)}">${escapeHtml(prop.email)}</a></td>
+                        <td class="p-3 font-medium text-slate-800">${escapeHtml(prop.title)}</td>
+                        <td class="p-3"><span class="px-2 py-1 rounded text-xs bg-blue-100 text-blue-800 font-medium">${escapeHtml(prop.profile)}</span></td>
+                        <td class="p-3 text-xs text-slate-600 max-w-xs truncate" title="${escapeHtml(prop.problem)}">${escapeHtml(prop.problem)}</td>
+                        <td class="p-3 text-xs text-slate-600 max-w-xs truncate" title="${escapeHtml(prop.aiRole)}">${escapeHtml(prop.aiRole)}</td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        // Función de generación y descarga del CSV Consolidado con todos los proyectos
+        window.downloadAllProposalsCSV = function() {
+            if (allProposals.length === 0) {
+                return;
+            }
+
+            const csvRows = [];
+            // Encabezados
+            const headers = ["Fecha Registro", "Participante", "Email", "Perfil", "Título del Proyecto", "Problema Planteado", "Objetivo de Solución", "Rol de la IA", "Comentarios Adicionales"];
+            csvRows.push(headers.map(h => `"${h.replace(/"/g, '""')}"`).join(","));
+
+            // Rellenar filas de datos
+            allProposals.forEach(prop => {
+                let dateStr = "N/A";
+                if (prop.createdAt && typeof prop.createdAt.toDate === 'function') {
+                    dateStr = prop.createdAt.toDate().toISOString();
+                } else if (prop.timestamp && typeof prop.timestamp.toDate === 'function') {
+                    dateStr = prop.timestamp.toDate().toISOString();
+                }
+
+                const row = [
+                    dateStr,
+                    prop.name || "",
+                    prop.email || "",
+                    prop.profile || "",
+                    prop.title || "",
+                    prop.problem || "",
+                    prop.objective || "",
+                    prop.aiRole || "",
+                    prop.comments || ""
+                ];
+
+                csvRows.push(row.map(r => `"${r.replace(/"/g, '""')}"`).join(","));
+            });
+
+            // Codificación UTF-8 con la marca BOM para apertura correcta en Excel sin distorsión de acentos
+            const csvContent = "\uFEFF" + csvRows.join("\n");
+            const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+            const csvUrl = URL.createObjectURL(blob);
+
+            const tempLink = document.createElement('a');
+            tempLink.href = csvUrl;
+            tempLink.setAttribute('download', `base_proyectos_PIT_UNEXPO_${new Date().toISOString().slice(0,10)}.csv`);
+            document.body.appendChild(tempLink);
+            tempLink.click();
+            document.body.removeChild(tempLink);
+        };
+
+        function escapeHtml(str) {
+            if (!str) return '';
+            return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+        }
+
+        // Ejecutar inicialización al cargar la página
+        window.addEventListener('DOMContentLoaded', initFirebase);
+    </script>
 
     <script>
         const pitData = {
             ingeniero: {
                 title: "Carril Técnico",
                 desc: "Aportan la agilidad digital, el desarrollo de código y el control técnico de los parámetros en las plataformas como AI Studio.",
-                items: ["Auditoría de código automatizada.", "Análisis de datos de laboratorios.", "Construcción de simuladores en Python."]
+                items: ["Auditoría de código automatizada.", "Análisis de datos de laboratorios.", "Construcción de simuladores en Python."],
+                analogies: [
+                    { concept: "Tokenización", desc: "Segmentación de cadenas de texto en unidades de información o vectores dimensionales (equivalente a descomponer un vector de estado en componentes discretas)." },
+                    { concept: "Temperatura (T)", desc: "Control de entropía y agitación en la distribución de probabilidad (similar a la agitación de partículas térmicas en sistemas cerrados)." },
+                    { concept: "Espacio Latente", desc: "Espacio vectorial multidimensional de características semánticas (homólogo a un espacio de estados multidimensional en sistemas dinámicos)." },
+                    { concept: "Prompt ToT", desc: "Algoritmo de ramificación lógica y evaluación de estados (análogo a un método A* o de control adaptativo predictivo)." }
+                ]
             },
             docente: {
                 title: "Carril Docente",
                 desc: "Aportan la rigurosidad pedagógica y el conocimiento del pensum para automatizar y mejorar el flujo educativo.",
-                items: ["Diseño curricular de una materia técnica.", "Generador automático de rúbricas.", "Evaluaciones basadas en metodologías UNEXPO."]
+                items: ["Diseño curricular de una materia técnica.", "Generador automático de rúbricas.", "Evaluaciones basadas en metodologías UNEXPO."],
+                analogies: [
+                    { concept: "Tokenización", desc: "Descomposición de las oraciones en sílabas gramaticales o rúbricas de evaluación en criterios independientes mínimos." },
+                    { concept: "Temperatura (T)", desc: "Flexibilidad de evaluación. T=0 representa una corrección rígida mediante plantilla; T=1 es una evaluación holística, creativa y flexible." },
+                    { concept: "Espacio Latente", desc: "El mapa curricular global de una facultad, donde las materias de áreas afines como fluidos y termodinámica se agrupan en un mismo clúster." },
+                    { concept: "Prompt ToT", desc: "Una mesa redonda de debate docente donde se evalúan secuencialmente múltiples hipótesis pedagógicas antes de tomar una decisión." }
+                ]
             },
             administrativo: {
                 title: "Carril Administrativo",
-                desc: "Aportan el 'Dolor de Dominio' real: los reglamentos, la burocracia institucional y los cuellos de botella de la universidad.",
-                items: ["Automatización de minutas de consejos de departamento.", "Clasificador inteligente de reclamos estudiantiles.", "Procesamiento de datos ofimáticos con lenguaje natural."]
+                desc: "Aportan el conocimiento de los reglamentos, los expedientes institucionales y la resolución de la burocracia universitaria.",
+                items: ["Automatización de minutas de consejos de departamento.", "Clasificador inteligente de reclamos estudiantiles.", "Procesamiento de datos ofimáticos con lenguaje natural."],
+                analogies: [
+                    { concept: "Tokenización", desc: "Desglose formal de un expediente en sus campos mínimos de datos: nombre del alumno, cédula y código de materia." },
+                    { concept: "Temperatura (T)", desc: "Apego al reglamento. T=0 representa un estricto seguimiento literal de la norma; T=1 permite buscar soluciones de equivalencia creativas." },
+                    { concept: "Espacio Latente", desc: "El archivo físico de expedientes, estructurado para que los documentos de un mismo trámite fluyan de forma natural en el mismo estante." },
+                    { concept: "Prompt ToT", desc: "El flujo de firmas consecutivas para la aprobación de un grado, evaluando los requisitos y alternativas en cada oficina." }
+                ]
             }
         };
-
-        const analogiesData = [
-            {
-                concept: "Tokenización",
-                eng: "Fragmentación de cadenas de texto en unidades de información (vectores numéricos).",
-                admin: "El juego de Scrabble: La IA no procesa palabras completas; lee fichas con puntajes específicos y relaciones espaciales para armar ideas de forma probabilística.",
-                icon: "🧩"
-            },
-            {
-                concept: "Temperatura (T)",
-                eng: "Parámetro que controla la entropía en la distribución de probabilidad del siguiente token.",
-                admin: "La perilla de la creatividad: En T = 0, el asistente sigue el manual de forma literal; en T = 1, se transforma en un participante libre en una sesión de lluvia de ideas.",
-                icon: "🌡️"
-            },
-            {
-                concept: "Espacio Latente",
-                eng: "Representación matemática multidimensional de relaciones semánticas.",
-                admin: "El archivo nacional: Una biblioteca infinita donde los documentos con temáticas similares flotan de manera ordenada en el mismo pasillo físico.",
-                icon: "🗄️"
-            },
-            {
-                concept: "Prompt ToT",
-                eng: "Algoritmo de búsqueda que evalúa múltiples ramificaciones de decisión lógica.",
-                admin: "La junta de pasillo virtual: Simular una reunión formal entre el Decano y Control de Estudios para debatir pros y contras de una decisión.",
-                icon: "🌳"
-            }
-        ];
 
         const sessionData = {
             s1: {
@@ -251,11 +716,159 @@
             }
         };
 
+        const templates = {
+            tech: {
+                title: "Simulador de Ensayos Mecánicos Asistido",
+                profile: "Ingeniero / Estudiante de Ingeniería",
+                problem: "Los estudiantes de laboratorio tardan horas analizando diagramas de esfuerzo-deformación y cometen errores en los informes al calcular la fatiga de materiales.",
+                objective: "Construir un asistente que reciba los datos numéricos crudos de un ensayo y genere un reporte estructural con el análisis de falla predicho.",
+                aiRole: "Procesará arreglos numéricos tabulados, identificará los puntos de cedencia y redactará la conclusión técnica del informe automáticamente."
+            },
+            doc: {
+                title: "Diseñador de Evaluaciones Adaptativas",
+                profile: "Docente Universitario",
+                problem: "Diseñar exámenes parciales con el mismo nivel de complejidad pero diferentes preguntas.",
+                objective: "Desarrollar un asistente que analice el programa de la materia y diseñe tres exámenes paralelos de un determinado tema.",
+                aiRole: "Analizará el nivel taxonómico de los objetivos del pensum y redactará preguntas de desarrollo y rúbricas alineadas con los documentos especificados."
+            },
+            adm: {
+                title: "Clasificador Automatizado de Solicitudes de Equivalencia",
+                profile: "Personal Administrativo",
+                problem: "La acumulación física y digital de expedientes de traslado externo satura el departamento administrativo por la lentitud al contrastar asignaturas.",
+                objective: "Crear un agente que reciba las materias cursadas externamente y sugiera la equivalencia con las asignaturas del pensum oficial.",
+                aiRole: "Analizará los programas externos y generará un reporte preliminar de concordancia semántica de contenidos."
+            }
+        };
+
+        function loadTemplate(key) {
+            const template = templates[key];
+            document.getElementById('p-title').value = template.title;
+            document.getElementById('p-profile').value = template.profile;
+            document.getElementById('p-problem').value = template.problem;
+            document.getElementById('p-objective').value = template.objective;
+            document.getElementById('p-ai-role').value = template.aiRole;
+            updateProposalPreview();
+        }
+
+        function updateProposalPreview() {
+            const title = document.getElementById('p-title').value || "Mi Proyecto de IA";
+            const profile = document.getElementById('p-profile').value;
+            const problem = document.getElementById('p-problem').value || "Sin definir aún. Escribe en el cuadro de la izquierda para comenzar...";
+            const objective = document.getElementById('p-objective').value || "Describe cuál es el resultado esperado de esta automatización.";
+            const aiRole = document.getElementById('p-ai-role').value || "¿Cómo ayudará el modelo de lenguaje en este flujo?";
+
+            document.getElementById('preview-title').textContent = title;
+            document.getElementById('preview-profile-tag').textContent = profile;
+            document.getElementById('preview-problem').textContent = problem;
+            document.getElementById('preview-objective').textContent = objective;
+            document.getElementById('preview-ai-role').textContent = aiRole;
+        }
+
+        function copyProposalToClipboard() {
+            const title = document.getElementById('preview-title').textContent;
+            const profile = document.getElementById('preview-profile-tag').textContent;
+            const problem = document.getElementById('preview-problem').textContent;
+            const objective = document.getElementById('preview-objective').textContent;
+            const aiRole = document.getElementById('preview-ai-role').textContent;
+
+            const textToCopy = `FICHA PRELIMINAR DE PROYECTO PIT\n\nTítulo: ${title}\nPerfil: ${profile}\n\n1. Problema:\n${problem}\n\n2. Objetivo de Solución:\n${objective}\n\n3. Rol de la IA:\n${aiRole}`;
+
+            const dummy = document.createElement("textarea");
+            document.body.appendChild(dummy);
+            dummy.value = textToCopy;
+            dummy.select();
+            document.execCommand("copy");
+            document.body.removeChild(dummy);
+
+            const status = document.getElementById('copy-status');
+            status.classList.remove('hidden');
+            setTimeout(() => {
+                status.classList.add('hidden');
+            }, 2000);
+        }
+
+        /* Modal para que el estudiante envíe la propuesta */
+        function openContactModal() {
+            const title = document.getElementById('preview-title').textContent;
+            const profile = document.getElementById('preview-profile-tag').textContent;
+
+            document.getElementById('modal-proj-title').textContent = title;
+            document.getElementById('modal-proj-profile').textContent = profile;
+
+            // Restablecer vistas del modal
+            document.getElementById('modal-form-content').classList.remove('hidden');
+            document.getElementById('modal-success-content').classList.add('hidden');
+            document.getElementById('proposal-submit-form').reset();
+
+            document.getElementById('contact-modal').classList.remove('hidden');
+            document.getElementById('contact-modal').classList.add('flex');
+        }
+
+        function closeContactModal() {
+            document.getElementById('contact-modal').classList.add('hidden');
+            document.getElementById('contact-modal').classList.remove('flex');
+        }
+
+        /* Gestión de Acceso Administrativo */
+        function openAdminAccessModal() {
+            document.getElementById('admin-error-text').classList.add('hidden');
+            document.getElementById('admin-pass').value = '';
+            document.getElementById('admin-access-modal').classList.remove('hidden');
+            document.getElementById('admin-access-modal').classList.add('flex');
+        }
+
+        function closeAdminAccessModal() {
+            document.getElementById('admin-access-modal').classList.add('hidden');
+            document.getElementById('admin-access-modal').classList.remove('flex');
+        }
+
+        function validateAdminAccess() {
+            const key = document.getElementById('admin-pass').value;
+            // Contraseña básica para el instructor
+            if (key === '0626') {
+                closeAdminAccessModal();
+                openAdminConsoleModal();
+            } else {
+                document.getElementById('admin-error-text').classList.remove('hidden');
+            }
+        }
+
+        function openAdminConsoleModal() {
+            document.getElementById('admin-console-modal').classList.remove('hidden');
+            document.getElementById('admin-console-modal').classList.add('flex');
+        }
+
+        function closeAdminConsoleModal() {
+            document.getElementById('admin-console-modal').classList.add('hidden');
+            document.getElementById('admin-console-modal').classList.remove('flex');
+        }
+
+        /* Cierre Seguro de Consola y Retorno */
+        function secureCloseAdminConsole() {
+            // Limpieza estricta de credenciales en caché de formulario
+            document.getElementById('admin-pass').value = '';
+            closeAdminConsoleModal();
+            // Desplazamiento suave al tope del Landing Page
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function renderAnalogies(analogies) {
+            const container = document.getElementById('pit-analogies');
+            container.innerHTML = analogies.map(item => `
+                <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 card-hover">
+                    <h5 class="font-bold text-slate-800 text-base mb-1">🔍 ${item.concept}</h5>
+                    <p class="text-sm text-slate-600 leading-relaxed italic">"${item.desc}"</p>
+                </div>
+            `).join('');
+        }
+
         function initTabs() {
             const tabs = document.querySelectorAll('.tab-btn');
             const title = document.getElementById('pit-title');
             const desc = document.getElementById('pit-desc');
             const list = document.getElementById('pit-list');
+
+            renderAnalogies(pitData.ingeniero.analogies);
 
             tabs.forEach(tab => {
                 tab.addEventListener('click', (e) => {
@@ -272,32 +885,9 @@
                     title.textContent = data.title;
                     desc.textContent = data.desc;
                     list.innerHTML = data.items.map(item => `<li>${item}</li>`).join('');
+                    renderAnalogies(data.analogies);
                 });
             });
-        }
-
-        function initAnalogies() {
-            const grid = document.getElementById('analogies-grid');
-            let html = '';
-            analogiesData.forEach(item => {
-                html += `
-                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 card-hover flex flex-col h-full">
-                        <div class="flex items-center gap-3 mb-4">
-                            <span class="text-3xl">${item.icon}</span>
-                            <h3 class="text-xl font-bold text-slate-800">${item.concept}</h3>
-                        </div>
-                        <div class="mb-4">
-                            <span class="text-xs font-bold uppercase tracking-wider text-slate-400">Ingeniería</span>
-                            <p class="text-sm text-slate-700 mt-1">${item.eng}</p>
-                        </div>
-                        <div class="mt-auto pt-4 border-t border-slate-100">
-                            <span class="text-xs font-bold uppercase tracking-wider text-blue-500">Analogía Docente/Admin</span>
-                            <p class="text-sm font-semibold text-slate-800 mt-1 italic">"${item.admin}"</p>
-                        </div>
-                    </div>
-                `;
-            });
-            grid.innerHTML = html;
         }
 
         function initSessions() {
@@ -391,12 +981,11 @@
             new Chart(ctxTime, {
                 type: 'doughnut',
                 data: {
-                    labels: ['Teoría (90m)', 'Receso (30m)', 'Práctica PIT (120m)'],
+                    labels: ['Teoría (90m)', 'Práctica PIT (120m)'],
                     datasets: [{
-                        data: [90, 30, 120],
+                        data: [90, 120],
                         backgroundColor: [
                             '#f59e0b', 
-                            '#cbd5e1', 
                             '#2563eb'  
                         ],
                         borderWidth: 0,
@@ -419,7 +1008,6 @@
 
         document.addEventListener('DOMContentLoaded', () => {
             initTabs();
-            initAnalogies();
             initSessions();
             initCharts();
         });
