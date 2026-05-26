@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel Interactivo - Curso IA UNEXPO v2.1</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+            color: #0f172a;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+        .tab-active {
+            border-bottom: 4px solid #2563eb;
+            color: #2563eb;
+            font-weight: 600;
+        }
+        .session-btn-active {
+            background-color: #1e40af;
+            color: white;
+        }
+        .card-hover {
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+    </style>
+</head>
+<body class="antialiased pb-12">
+
+    <!-- Chosen Palette: Slate Backgrounds (#f8fafc, #f1f5f9), Blue Accents (#2563eb, #1e40af) for academic/tech feel, Amber highlights (#d97706) for call-to-actions. -->
+    
+    <!-- Application Structure Plan: The SPA uses a dashboard-style architecture optimized for exploring a multifaceted educational program. It begins with a high-level strategic overview (metrics and pricing), flows into an audience-specific interactive section (allowing users to see their tailored learning path), presents the pedagogical bridging mechanism (analogies grid), and concludes with a deep-dive interactive session timeline. This structure was chosen because it breaks down the linear syllabus into task-oriented views: "What is it?", "Who is it for?", "How is it taught?", and "When does it happen?", maximizing comprehension for a diverse stakeholder audience. -->
+
+    <!-- Visualization & Content Choices: 
+         1. Pricing/Structure -> Goal: Compare -> Visualization: Bar Chart (Chart.js) -> Justification: Clearly demonstrates the financial benefit of the combo package vs individual modules.
+         2. Session Time Allocation -> Goal: Inform -> Visualization: Doughnut Chart (Chart.js) -> Justification: Visually breaks down the strict 3.5h session into theory, break, and practice.
+         3. Audience Tracks (PIT) -> Goal: Organize -> Visualization: Interactive Tabs (Vanilla JS) -> Justification: Prevents information overload by only showing the project track relevant to the selected persona (Engineer/Teacher/Admin).
+         4. Analogies -> Goal: Relate -> Visualization: Responsive Grid Cards (Tailwind) -> Justification: Directly compares technical concepts with non-technical analogies side-by-side.
+         5. Syllabus Timeline -> Goal: Change/Process -> Visualization: Interactive Button Group + Detail Panel -> Justification: Allows non-linear exploration of the 4 sessions, keeping the UI compact.
+         Libraries: Tailwind CSS for layout, Chart.js for data viz. NO SVG or Mermaid used (Unicode icons implemented instead). -->
+
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+
+    <header class="bg-slate-900 text-white py-12 px-6 shadow-md border-b-4 border-blue-600">
+        <div class="max-w-6xl mx-auto">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">🤖 Curso IA UNEXPO v2.1</h1>
+            <p class="text-xl text-slate-300 max-w-3xl leading-relaxed">
+                Panel interactivo del programa instruccional definitivo. Explora la estructura modular, las rutas de aprendizaje adaptativas para público mixto y la planificación estratégica del Proyecto de Integración Técnica (PIT).
+            </p>
+        </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-6 mt-10 space-y-16">
+
+        <section id="panorama" class="space-y-6">
+            <div class="mb-8">
+                <h2 class="text-3xl font-bold text-slate-800 border-l-4 border-blue-600 pl-4">Estrategia y Estructura Modular</h2>
+                <p class="mt-4 text-slate-600 text-lg leading-relaxed">
+                    Esta sección visualiza la arquitectura base del programa. Se divide en dos módulos de dos semanas, diseñados para actuar como un embudo de conversión. El gráfico de barras ilustra la ventaja económica de la certificación completa, mientras que el gráfico de anillo detalla la rigurosa distribución del tiempo en cada encuentro presencial o híbrido.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+                    <h3 class="text-xl font-bold mb-4 text-center">Estrategia Comercial (Inversión)</h3>
+                    <div class="chart-container">
+                        <canvas id="pricingChart"></canvas>
+                    </div>
+                    <p class="text-sm text-slate-500 mt-4 text-center">El combo "Especialista en IA" representa un ahorro frente a la compra individual, asegurando flujo de caja inicial.</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+                    <h3 class="text-xl font-bold mb-4 text-center">Distribución Horaria por Sesión (3.5h)</h3>
+                    <div class="chart-container">
+                        <canvas id="timeChart"></canvas>
+                    </div>
+                    <p class="text-sm text-slate-500 mt-4 text-center">Equilibrio estricto entre teoría, descanso cognitivo y trabajo práctico (PIT).</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="rutas" class="space-y-6 bg-slate-100 p-8 rounded-3xl border border-slate-200">
+            <div class="mb-6">
+                <h2 class="text-3xl font-bold text-slate-800 border-l-4 border-blue-600 pl-4">Rutas del Proyecto (PIT) por Perfil</h2>
+                <p class="mt-4 text-slate-600 text-lg leading-relaxed">
+                    El aula aloja un público mixto. Selecciona un perfil a continuación para descubrir cómo el Proyecto de Integración Técnica (PIT) se adapta a sus necesidades específicas, fomentando la sinergia en equipos interdisciplinarios (Ej. Estudiante + Administrativo).
+                </p>
+            </div>
+
+            <div class="flex flex-wrap border-b border-slate-300 mb-6">
+                <button class="tab-btn tab-active px-6 py-3 text-lg transition-colors" data-target="ingeniero">⚙️ Ingenieros / Estudiantes</button>
+                <button class="tab-btn px-6 py-3 text-lg text-slate-500 hover:text-blue-600 transition-colors" data-target="docente">🎓 Docentes</button>
+                <button class="tab-btn px-6 py-3 text-lg text-slate-500 hover:text-blue-600 transition-colors" data-target="administrativo">🏢 Administrativos</button>
+            </div>
+
+            <div id="pit-content" class="bg-white p-8 rounded-2xl shadow-sm min-h-[250px]">
+                <h3 id="pit-title" class="text-2xl font-bold text-blue-800 mb-4">Carril Técnico</h3>
+                <p id="pit-desc" class="text-lg text-slate-700 mb-6">Aportan la agilidad digital y el control técnico de los parámetros en las plataformas de desarrollo.</p>
+                <ul id="pit-list" class="list-disc list-inside space-y-3 text-slate-600 text-lg">
+                    <li>Auditoría de código.</li>
+                    <li>Análisis de datos de laboratorios.</li>
+                    <li>Simuladores en Python.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="diccionario" class="space-y-6">
+            <div class="mb-8">
+                <h2 class="text-3xl font-bold text-slate-800 border-l-4 border-blue-600 pl-4">Diccionario de Analogías Transversales</h2>
+                <p class="mt-4 text-slate-600 text-lg leading-relaxed">
+                    Para superar el reto lingüístico de enseñar a perfiles tan dispares simultáneamente, el programa utiliza analogías. Estas tarjetas comparan la explicación técnica de un concepto de IA con su traducción pedagógica para personal no técnico. Pase el cursor sobre ellas para explorar.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="analogies-grid">
+            </div>
+        </section>
+
+        <section id="planificacion" class="space-y-6">
+            <div class="mb-8">
+                <h2 class="text-3xl font-bold text-slate-800 border-l-4 border-blue-600 pl-4">Planificación Académica Interactiva</h2>
+                <p class="mt-4 text-slate-600 text-lg leading-relaxed">
+                    Navegue por las cuatro sesiones que componen los dos módulos. Cada sesión está diseñada cronológicamente para llevar al estudiante desde los conceptos básicos de los LLMs hasta la creación de agentes autónomos, pasando por fases críticas de desarrollo del proyecto final.
+                </p>
+            </div>
+
+            <div class="flex flex-col md:flex-row gap-8">
+                <div class="w-full md:w-1/3 flex flex-col space-y-3" id="session-buttons">
+                </div>
+
+                <div class="w-full md:w-2/3 bg-white p-8 rounded-2xl shadow-md border border-slate-200">
+                    <div class="inline-block bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-bold mb-4 uppercase tracking-wider" id="s-module">Módulo 1</div>
+                    <h3 class="text-3xl font-bold text-slate-900 mb-6" id="s-title">Sesión 1: Lógica de LLMs y el Primer Disparo</h3>
+                    
+                    <div class="space-y-6">
+                        <div class="bg-slate-50 p-5 rounded-xl border-l-4 border-amber-500">
+                            <h4 class="font-bold text-lg text-slate-800 mb-2">⏱️ Bloque Teórico / Técnico (08:00 - 09:30)</h4>
+                            <p class="text-slate-600" id="s-theory">Introducción conceptual a LLMs. Redacción estructurada de prompts utilizando el marco de trabajo TRICE y edición colaborativa en el espacio de Canvas.</p>
+                            <p class="text-sm font-semibold text-slate-500 mt-2">Herramientas: <span id="s-tools1" class="text-slate-700">Gemini Canvas, Interfaces de tokens.</span></p>
+                        </div>
+
+                        <div class="bg-blue-50 p-5 rounded-xl border-l-4 border-blue-600">
+                            <h4 class="font-bold text-lg text-slate-800 mb-2">🛠️ Taller Práctico PIT (10:00 - 12:00)</h4>
+                            <p class="text-slate-600" id="s-practice">Fase 0-2: Definición de límites, selección del carril del PIT, constitución de equipos mixtos y mapeo de inconvenientes operativos en la UNEXPO.</p>
+                            <p class="text-sm font-semibold text-slate-500 mt-2">Cierre: <span id="s-tools2" class="text-slate-700">Elevator Pitch de Parejas (60 segundos).</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-slate-900 text-slate-400 py-8 text-center mt-16">
+        <p>© 2026 Panel Interactivo - Basado en la propuesta instruccional de IA UNEXPO v2.1</p>
+    </footer>
+
+    <script>
+        const pitData = {
+            ingeniero: {
+                title: "Carril Técnico",
+                desc: "Aportan la agilidad digital, el desarrollo de código y el control técnico de los parámetros en las plataformas como AI Studio.",
+                items: ["Auditoría de código automatizada.", "Análisis de datos de laboratorios.", "Construcción de simuladores en Python."]
+            },
+            docente: {
+                title: "Carril Docente",
+                desc: "Aportan la rigurosidad pedagógica y el conocimiento del pensum para automatizar y mejorar el flujo educativo.",
+                items: ["Diseño curricular de una materia técnica.", "Generador automático de rúbricas.", "Evaluaciones basadas en metodologías UNEXPO."]
+            },
+            administrativo: {
+                title: "Carril Administrativo",
+                desc: "Aportan el 'Dolor de Dominio' real: los reglamentos, la burocracia institucional y los cuellos de botella de la universidad.",
+                items: ["Automatización de minutas de consejos de departamento.", "Clasificador inteligente de reclamos estudiantiles.", "Procesamiento de datos ofimáticos con lenguaje natural."]
+            }
+        };
+
+        const analogiesData = [
+            {
+                concept: "Tokenización",
+                eng: "Fragmentación de cadenas de texto en unidades de información (vectores numéricos).",
+                admin: "El juego de Scrabble: La IA no procesa palabras completas; lee fichas con puntajes específicos y relaciones espaciales para armar ideas de forma probabilística.",
+                icon: "🧩"
+            },
+            {
+                concept: "Temperatura (T)",
+                eng: "Parámetro que controla la entropía en la distribución de probabilidad del siguiente token.",
+                admin: "La perilla de la creatividad: En T = 0, el asistente sigue el manual de forma literal; en T = 1, se transforma en un participante libre en una sesión de lluvia de ideas.",
+                icon: "🌡️"
+            },
+            {
+                concept: "Espacio Latente",
+                eng: "Representación matemática multidimensional de relaciones semánticas.",
+                admin: "El archivo nacional: Una biblioteca infinita donde los documentos con temáticas similares flotan de manera ordenada en el mismo pasillo físico.",
+                icon: "🗄️"
+            },
+            {
+                concept: "Prompt ToT",
+                eng: "Algoritmo de búsqueda que evalúa múltiples ramificaciones de decisión lógica.",
+                admin: "La junta de pasillo virtual: Simular una reunión formal entre el Decano y Control de Estudios para debatir pros y contras de una decisión.",
+                icon: "🌳"
+            }
+        ];
+
+        const sessionData = {
+            s1: {
+                mod: "Módulo 1",
+                title: "Sesión 1: Lógica de LLMs y el Primer Disparo",
+                theory: "Introducción conceptual a LLMs. Tokenización, espacio latente y Temperatura (T). Redacción estructurada de prompts utilizando el marco de trabajo TRICE y edición colaborativa.",
+                tools1: "Interfaces interactivas de tokens, Gemini Canvas.",
+                practice: "Fase 0-2 del PIT: Definición de expectativas, selección de carril (Técnico/Docente/Admin), y taller de constitución de equipos con mapeo de problemas.",
+                tools2: "Elevator Pitch estricto de 60 segundos por pareja."
+            },
+            s2: {
+                mod: "Módulo 1",
+                title: "Sesión 2: Anclaje y Aprendizaje Guiado",
+                theory: "Técnicas avanzadas de anclaje de datos para eliminar alucinaciones. Metodologías de búsqueda extendida en la web para normativas e investigaciones.",
+                tools1: "NotebookLM, Deep Research / Gemini Search.",
+                practice: "Fase 3-5 del PIT: Carga de material oficial UNEXPO. Recopilación de evidencia y Taller de Creación de Guías de Trabajo (Borradores de activos).",
+                tools2: "Consolidación en Google Docs interactuando con NotebookLM."
+            },
+            s3: {
+                mod: "Módulo 2",
+                title: "Sesión 3: Estructuras de Decisión y Toolbox",
+                theory: "Ingeniería de prompts ToT (Tree of Thoughts). Creación de asistentes personalizados (Gemas) mediante la metodología PARTS. Integración ofimática.",
+                tools1: "Google Gems (Advanced), Simuladores Lógicos.",
+                practice: "Fase 6-9 del PIT: Diseño de ruta lógica. Creación de Prototipo Gema institucional. Procesamiento masivo de datos y validación cruzada entre equipos.",
+                tools2: "Google Sheets con Gemini Extensions."
+            },
+            s4: {
+                mod: "Módulo 2",
+                title: "Sesión 4: Ecosistema Studio y Agentes No-Code",
+                theory: "Migración a entorno profesional (AI Studio) ajustando filtros y temperatura. Transición hacia IA Agéntica autónoma, planificación recursiva y tool calling.",
+                tools1: "Google AI Studio, Coze.",
+                practice: "Fase 10-13 del PIT: Construcción de agente autónomo visual. Ensamblaje y revisión de calidad. Firma de auditoría técnica (Human-in-the-loop) y socialización grupal.",
+                tools2: "Firma digital y Círculo de Discusión en aula."
+            }
+        };
+
+        function initTabs() {
+            const tabs = document.querySelectorAll('.tab-btn');
+            const title = document.getElementById('pit-title');
+            const desc = document.getElementById('pit-desc');
+            const list = document.getElementById('pit-list');
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', (e) => {
+                    tabs.forEach(t => {
+                        t.classList.remove('tab-active');
+                        t.classList.add('text-slate-500');
+                    });
+                    e.target.classList.add('tab-active');
+                    e.target.classList.remove('text-slate-500');
+
+                    const target = e.target.getAttribute('data-target');
+                    const data = pitData[target];
+
+                    title.textContent = data.title;
+                    desc.textContent = data.desc;
+                    list.innerHTML = data.items.map(item => `<li>${item}</li>`).join('');
+                });
+            });
+        }
+
+        function initAnalogies() {
+            const grid = document.getElementById('analogies-grid');
+            let html = '';
+            analogiesData.forEach(item => {
+                html += `
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 card-hover flex flex-col h-full">
+                        <div class="flex items-center gap-3 mb-4">
+                            <span class="text-3xl">${item.icon}</span>
+                            <h3 class="text-xl font-bold text-slate-800">${item.concept}</h3>
+                        </div>
+                        <div class="mb-4">
+                            <span class="text-xs font-bold uppercase tracking-wider text-slate-400">Ingeniería</span>
+                            <p class="text-sm text-slate-700 mt-1">${item.eng}</p>
+                        </div>
+                        <div class="mt-auto pt-4 border-t border-slate-100">
+                            <span class="text-xs font-bold uppercase tracking-wider text-blue-500">Analogía Docente/Admin</span>
+                            <p class="text-sm font-semibold text-slate-800 mt-1 italic">"${item.admin}"</p>
+                        </div>
+                    </div>
+                `;
+            });
+            grid.innerHTML = html;
+        }
+
+        function initSessions() {
+            const container = document.getElementById('session-buttons');
+            let html = '';
+            for (let i = 1; i <= 4; i++) {
+                html += `<button class="session-btn w-full text-left px-6 py-4 rounded-xl border border-slate-200 font-semibold text-slate-700 transition-colors hover:bg-blue-50 focus:outline-none ${i === 1 ? 'session-btn-active border-blue-600' : 'bg-white'}" data-session="s${i}">Sesión ${i}</button>`;
+            }
+            container.innerHTML = html;
+
+            const btns = document.querySelectorAll('.session-btn');
+            btns.forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    btns.forEach(b => {
+                        b.classList.remove('session-btn-active', 'border-blue-600');
+                        b.classList.add('bg-white');
+                        b.classList.remove('text-white');
+                        b.classList.add('text-slate-700');
+                    });
+                    
+                    e.target.classList.add('session-btn-active', 'border-blue-600');
+                    e.target.classList.remove('bg-white', 'text-slate-700');
+                    
+                    const sid = e.target.getAttribute('data-session');
+                    updateSessionView(sid);
+                });
+            });
+        }
+
+        function updateSessionView(sid) {
+            const data = sessionData[sid];
+            document.getElementById('s-module').textContent = data.mod;
+            document.getElementById('s-title').textContent = data.title;
+            document.getElementById('s-theory').textContent = data.theory;
+            document.getElementById('s-tools1').textContent = data.tools1;
+            document.getElementById('s-practice').textContent = data.practice;
+            document.getElementById('s-tools2').textContent = data.tools2;
+        }
+
+        function initCharts() {
+            const ctxPrice = document.getElementById('pricingChart').getContext('2d');
+            new Chart(ctxPrice, {
+                type: 'bar',
+                data: {
+                    labels: ['Individual M1', 'Individual M2', 'Total Separado', 'Combo Especialista'],
+                    datasets: [{
+                        label: 'Inversión (USD)',
+                        data: [15, 15, 30, 25],
+                        backgroundColor: [
+                            'rgba(148, 163, 184, 0.6)', 
+                            'rgba(148, 163, 184, 0.6)', 
+                            'rgba(220, 38, 38, 0.7)',   
+                            'rgba(37, 99, 235, 0.9)'    
+                        ],
+                        borderColor: [
+                            'rgba(148, 163, 184, 1)',
+                            'rgba(148, 163, 184, 1)',
+                            'rgba(220, 38, 38, 1)',
+                            'rgba(37, 99, 235, 1)'
+                        ],
+                        borderWidth: 1,
+                        borderRadius: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return '$' + context.parsed.y + ' USD';
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: { color: '#f1f5f9' }
+                        },
+                        x: {
+                            grid: { display: false }
+                        }
+                    }
+                }
+            });
+
+            const ctxTime = document.getElementById('timeChart').getContext('2d');
+            new Chart(ctxTime, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Teoría (90m)', 'Receso (30m)', 'Práctica PIT (120m)'],
+                    datasets: [{
+                        data: [90, 30, 120],
+                        backgroundColor: [
+                            '#f59e0b', 
+                            '#cbd5e1', 
+                            '#2563eb'  
+                        ],
+                        borderWidth: 0,
+                        hoverOffset: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    cutout: '70%',
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: { padding: 20, font: { family: 'Inter' } }
+                        }
+                    }
+                }
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            initTabs();
+            initAnalogies();
+            initSessions();
+            initCharts();
+        });
+    </script>
+</body>
+</html>
